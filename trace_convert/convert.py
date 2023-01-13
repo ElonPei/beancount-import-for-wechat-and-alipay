@@ -20,10 +20,11 @@ def amount_format(obj, income_and_expenses):
 def beans_to_file(file, beans):
     content = ''
     for bean in beans:
-        title = bean.date + ' ' + bean.location + ' ' + bean.desc
+        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"'
         content = content + title + '\n'
         for item in bean.items:
             content = content + item.account + ' ' + str(item.amount) + ' ' + item.currency + '\n'
+        content = content + '\n'
     with open(file, 'w+') as f:
         f.write(content)
 
