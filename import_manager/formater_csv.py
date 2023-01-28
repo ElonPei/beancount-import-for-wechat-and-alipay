@@ -18,13 +18,14 @@ def format_alipay_to_list(path):
     删除掉头部无用的信息
     :return:
     """
-    rows = read_csv_to_list(path)
-    rows = delete_rows(rows, 0, 15)
+    rows = read_csv_to_list(path, encoding='gbk')
+    rows = delete_rows(rows, 0, 0)
+    rows = rows[:-21]
     return rows
 
 
-def read_csv_to_list(path):
-    with open(path, newline='') as f:
+def read_csv_to_list(path, encoding='utf8'):
+    with open(path, newline='', encoding=encoding) as f:
         reader = csv.reader(f)
         data = list(reader)
     return data
