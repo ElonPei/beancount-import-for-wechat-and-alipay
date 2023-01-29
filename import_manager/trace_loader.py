@@ -8,7 +8,7 @@ trade_path = '/Users/peiel/Desktop/123/'
 
 
 def sort_by_trace_time(df):
-    return df.sort_values('交易时间')
+    return df.sort_values('date')
 
 
 def load_wechat_trace():
@@ -20,6 +20,9 @@ def load_wechat_trace():
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
         df = pd.concat([df, inner_df])
+    df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7]]
+    df.columns = ['date', 'trace_type', 'trace_obj', 'good', 'income_and_expenses', 'amount', 'pay_way', 'status']
+    df['source'] = 'wechat'
     df = sort_by_trace_time(df)
     return df
 
@@ -33,7 +36,9 @@ def load_alipay_trace():
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
         df = pd.concat([df, inner_df])
-    df.columns = ['收/支','交易对方','对方账号','商品说明','收/付款方式','金额','交易状态','交易分类','交易订单号','商家订单号','交易时间', '']
+    df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6]]
+    df.columns = ['date', 'trace_type', 'trace_obj', 'good', 'income_and_expenses', 'amount', 'pay_way', 'status']
+    df['source'] = 'alipay'
     df = sort_by_trace_time(df)
     return df
 
