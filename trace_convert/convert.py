@@ -1,3 +1,4 @@
+from export_manager.file_export import beans_to_file
 from import_manager.trace_loader import load_wechat_trace, load_alipay_trace
 from trace_convert.bean import Bean, Item
 
@@ -17,18 +18,6 @@ def amount_format(obj, income_and_expenses):
     return 0
 
 
-def beans_to_file(file, beans):
-    content = ''
-    for bean in beans:
-        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"'
-        content = content + title + '\n'
-        for item in bean.items:
-            content = content + item.account + ' ' + str(item.amount) + ' ' + item.currency + '\n'
-        content = content + '\n'
-    with open(file, 'w+') as f:
-        f.write(content)
-
-
 def load_rule():
     return None
 
@@ -37,14 +26,15 @@ def convert(df):
     print(df.head())
     beans = []
     for index, row in df.iterrows():
-        date = row['交易时间']
-        trace_type = row['交易类型']
-        trace_obj = row['交易对方']
-        good = row['商品']
-        income_and_expenses = row['收/支']
-        amount = row['金额(元)']
-        pay_way = row['支付方式']
-        status = row['当前状态']
+        date = row['date']
+        trace_type = row['trace_type']
+        trace_obj = row['trace_obj']
+        good = row['good']
+        income_and_expenses = row['income_and_expenses']
+        amount = row['amount']
+        pay_way = row['pay_way']
+        status = row['status']
+        source = row['source']
 
         print('交易时间 -> ', date)
         print('交易类型 -> ', trace_type)
@@ -54,6 +44,7 @@ def convert(df):
         print('金额(元) -> ', amount)
         print('支付方式 -> ', pay_way)
         print('当前状态 -> ', status)
+        print('来源 -> ', source)
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, income_and_expenses))
