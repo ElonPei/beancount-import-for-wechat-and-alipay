@@ -10,10 +10,12 @@ def datetime_format(obj):
 
 
 def amount_format(obj, income_and_expenses):
+    if '$' in obj or '¥' in obj:
+        obj = obj[1:]
     if '收入' in income_and_expenses:
-        return - float(obj[1:])
+        return - float(obj)
     if '支出' in income_and_expenses:
-        return obj[1:]
+        return obj
     # raise Exception('无法判断收支情况', income_and_expenses)
     return 0
 
