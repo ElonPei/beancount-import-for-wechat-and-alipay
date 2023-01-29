@@ -31,7 +31,7 @@ def convert(df):
         date = row['date']
         trace_type = row['trace_type']
         trace_obj = row['trace_obj']
-        good = row['good']
+        goods = row['goods']
         income_and_expenses = row['income_and_expenses']
         amount = row['amount']
         pay_way = row['pay_way']
@@ -41,7 +41,7 @@ def convert(df):
         print('交易时间 -> ', date)
         print('交易类型 -> ', trace_type)
         print('交易对方 -> ', trace_obj)
-        print('商品 -> ', good)
+        print('商品 -> ', goods)
         print('收/支 -> ', income_and_expenses)
         print('金额(元) -> ', amount)
         print('支付方式 -> ', pay_way)
