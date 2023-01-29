@@ -1,6 +1,7 @@
 from export_manager.file_export import beans_to_file
 from import_manager.trace_loader import load_wechat_trace, load_alipay_trace
 from trace_convert.bean import Bean, Item
+from trace_convert.trace_account import convert_account, convert_trace_change
 
 content_path = '/Users/peiel/PycharmProjects/beancount-import-for-wechat-and-alipay/out/'
 
@@ -28,6 +29,8 @@ def convert(df):
     print(df.head())
     beans = []
     for index, row in df.iterrows():
+        row = convert_trace_change(row)
+
         date = row['date']
         trace_type = row['trace_type']
         trace_obj = row['trace_obj']
@@ -50,9 +53,9 @@ def convert(df):
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, income_and_expenses))
-        bean = Bean(date=datetime_format(date), location=trace_obj, desc=trace_type, items=[item])
+        bean = Bean(date=datetime_format(date), location=trace_obj, desc= goods, items=[item])
         beans.append(bean)
-    return beans
+    return convert_account(beans)
 
 
 if __name__ == '__main__':
