@@ -24,6 +24,7 @@ def load_wechat_trace():
     df.columns = ['date', 'trace_type', 'trace_obj', 'good', 'income_and_expenses', 'amount', 'pay_way', 'status']
     df['source'] = 'wechat'
     df = sort_by_trace_time(df)
+    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     return df
 
 
@@ -40,6 +41,7 @@ def load_alipay_trace():
     df.columns = ['date', 'trace_type', 'trace_obj', 'good', 'income_and_expenses', 'amount', 'pay_way', 'status']
     df['source'] = 'alipay'
     df = sort_by_trace_time(df)
+    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     return df
 
 
