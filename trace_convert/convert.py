@@ -1,6 +1,6 @@
 from export_manager.file_export import beans_to_file
 from import_manager.trace_loader import load_wechat_trace, load_alipay_trace
-from trace_convert.bean import Bean, Item
+from model.bean import Bean, Item
 from trace_convert.trace_account import convert_account, convert_trace_change
 
 content_path = '/Users/peiel/PycharmProjects/beancount-import-for-wechat-and-alipay/out/'
@@ -16,7 +16,7 @@ def amount_format(obj, income_and_expenses):
     if '收入' in income_and_expenses:
         return - float(obj)
     if '支出' in income_and_expenses:
-        return obj
+        return float(obj)
     # raise Exception('无法判断收支情况', income_and_expenses)
     return 0
 
@@ -53,7 +53,7 @@ def convert(df):
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, income_and_expenses))
-        bean = Bean(date=datetime_format(date), location=trace_obj, desc= goods, items=[item])
+        bean = Bean(date=datetime_format(date), location=trace_obj, desc= goods, items=[item], source_trace=row)
         beans.append(bean)
     return convert_account(beans)
 

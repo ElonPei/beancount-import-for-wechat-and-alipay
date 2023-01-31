@@ -1,9 +1,12 @@
 account_map = {
     "assets": {
+        "/": "Assets:Unknown",
+        "余额": "Assets:Alipay:YuE",
         "余额宝": "Assets:Alipay:YuEBao",
         "余利宝": "Assets:Alipay:YuLiBao",
         "零钱": "Assets:Wechat:LingQian",
         "零钱通": "Assets:Wechat:LingQianTong",
+        "工商银行(6086)": "Assets:ICBC",
     },
     "expenses": {
         # 居家
@@ -73,7 +76,7 @@ account_map = {
         "退款": "Income:Refund",
     },
     "liabilities": {
-        "招商银行(5250)": "Liabilities:CreditCard:CMB",
+        "招商银行(5250)|招商银行(1787)": "Liabilities:CreditCard:CMB",
         "花呗": "Liabilities:Alipay:HuaBai",
     },
     "equity": {

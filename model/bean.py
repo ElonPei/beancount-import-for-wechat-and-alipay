@@ -1,5 +1,6 @@
 class Bean:
-    def __init__(self, date, location, desc, items):
+    def __init__(self, date, location, desc, items, source_trace):
+        self.source_trace = source_trace
         self.date = date
         self.location = location
         self.desc = desc
