@@ -54,8 +54,17 @@ def convert_account(beans):
     return beans
 
 
+def is_match_rule(match_rule, row):
+    # trace_obj = 网商银行 & goods = 账户结息
+    for item in match_rule.split('&'):
+        if item.split('=')[1] not in row[item.split('=')[0]]:
+            return False
+    return True
+
+
 def convert_trace_change(row):
-    for rule, v in trace_change_map.items():
-        if rule.split('=')[1] in row[rule.split('=')[0]]:
-            row[v.split('=')[0]] = v.split('=')[1]
+    for match_rule, result in trace_change_map.items():
+        if is_match_rule(match_rule, row):
+            for item in result.split(','):
+                row[item.split('=')[0]] = item.split('=')[1]
     return row

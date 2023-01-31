@@ -3,6 +3,7 @@ import os
 import pandas as pd
 
 import import_manager.formater_csv as fmt
+from import_manager.trace_filter import filter_df
 
 trade_path = '/Users/peiel/Desktop/123/'
 
@@ -25,6 +26,7 @@ def load_wechat_trace():
     df['source'] = 'wechat'
     df = sort_by_trace_time(df)
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    df = filter_df(df)
     return df
 
 
@@ -42,6 +44,7 @@ def load_alipay_trace():
     df['source'] = 'alipay'
     df = sort_by_trace_time(df)
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    df = filter_df(df)
     return df
 
 

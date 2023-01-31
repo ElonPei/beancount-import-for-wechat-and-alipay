@@ -10,15 +10,16 @@ def datetime_format(obj):
     return obj[:10]
 
 
-def amount_format(obj, income_and_expenses):
+def amount_format(obj, row):
+    income_and_expenses = row['income_and_expenses']
+
     if '$' in obj or '¥' in obj:
         obj = obj[1:]
     if '收入' in income_and_expenses:
         return - float(obj)
     if '支出' in income_and_expenses:
         return float(obj)
-    # raise Exception('无法判断收支情况', income_and_expenses)
-    return 0
+    raise Exception('无法判断收支情况', income_and_expenses)
 
 
 def load_rule():
@@ -52,7 +53,7 @@ def convert(df):
         print('来源 -> ', source)
         print()
 
-        item = Item(account=pay_way, amount=amount_format(amount, income_and_expenses))
+        item = Item(account=pay_way, amount=amount_format(amount, row))
         bean = Bean(date=datetime_format(date), location=trace_obj, desc= goods, items=[item], source_trace=row)
         beans.append(bean)
     return convert_account(beans)
