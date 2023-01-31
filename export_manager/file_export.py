@@ -11,8 +11,19 @@ def beans_to_file(file, beans):
         title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"'
         content = content + title + '\n'
         for item in bean.items:
-            content = content + item.account + ' ' + (str(item.amount) if item.amount else '') + ' ' + (item.currency if item.amount else '')
+            content = content + '\t' + item.account + ' ' + (str(item.amount) if item.amount else '') + ' ' + (item.currency if item.amount else '')
             content = content + ('\t;' + item.account_rule if item.account_rule else '') + '\n'
         content = content + '\n'
+    with open(file, 'w+') as f:
+        f.write(content)
+
+def accounts_to_file(file, accounts):
+    content = ''
+    for account in accounts:
+        content = content + '1993-02-13 open ' + account + ' CNY' + '\n'
+
+    content = content + '1993-02-13 open ' + 'Expenses:Unknown' + ' CNY' + '\n'
+    content = content + '1993-02-13 open ' + 'Income:Unknown' + ' CNY' + '\n'
+
     with open(file, 'w+') as f:
         f.write(content)

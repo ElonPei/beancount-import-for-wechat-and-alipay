@@ -6,12 +6,14 @@ from trace_convert.trace_account_conf import trace_change_map
 def match(account):
     for k, v in account_map['assets'].items():
         for i in k.split('|'):
-            if account == i:
-                return v, k + '->' + v
+            for item in account.split('&'):
+                if item == i:
+                    return v, k + '->' + v
     for k, v in account_map['liabilities'].items():
         for i in k.split('|'):
-            if account == i:
-                return v, k + '->' + v
+            for item in account.split('&'):
+                if item == i:
+                    return v, k + '->' + v
     return account, 'NotFoundRule'
 
 
@@ -68,3 +70,11 @@ def convert_trace_change(row):
             for item in result.split(','):
                 row[item.split('=')[0]] = item.split('=')[1]
     return row
+
+
+def export_account_data():
+    accounts = []
+    for _, v in account_map.items():
+        for _, account in v.items():
+            accounts.append(account)
+    return accounts

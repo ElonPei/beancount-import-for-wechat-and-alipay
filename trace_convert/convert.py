@@ -54,7 +54,7 @@ def convert(df):
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, row))
-        bean = Bean(date=datetime_format(date), location=trace_obj, desc= goods, items=[item], source_trace=row)
+        bean = Bean(date=datetime_format(date), location=trace_obj, desc=goods, items=[item], source_trace=row)
         beans.append(bean)
     return convert_account(beans)
 

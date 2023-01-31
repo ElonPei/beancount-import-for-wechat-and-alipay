@@ -6,7 +6,9 @@ account_map = {
         "余利宝": "Assets:Alipay:YuLiBao",
         "零钱": "Assets:Wechat:LingQian",
         "零钱通": "Assets:Wechat:LingQianTong",
-        "工商银行(6086)": "Assets:ICBC",
+        "工商银行(6086)|工商银行": "Assets:ICBC",
+        "招商银行(4481)": "Assets:CMB",
+        "民生银行(9564)": "Assets:MSB",
     },
     "expenses": {
         # 居家
@@ -76,7 +78,7 @@ account_map = {
         "退款": "Income:Refund",
     },
     "liabilities": {
-        "招商银行(5250)|招商银行(1787)": "Liabilities:CreditCard:CMB",
+        "招商银行(5250)|招商银行(1787)|招商银行": "Liabilities:CreditCard:CMB",
         "花呗": "Liabilities:Alipay:HuaBai",
     },
     "equity": {
@@ -98,7 +100,7 @@ trace_change_map = {
     "goods=余额宝-转出到余额": "income_and_expenses=支出",
     "goods=支付宝转入到余利宝": "income_and_expenses=支出",
     "goods=余利宝-转出到银行卡": "pay_way=余利宝,income_and_expenses=支出",
-    "goods=余利宝转出": "pay_way=余利宝,income_and_expenses=支出",
+    "goods=余利宝转出": "pay_way=余利宝,income_and_expenses=收入",
     "trace_obj=网商银行&goods=账户结息": "pay_way=余利宝,income_and_expenses=收入",
     "goods=充值-普通充值": "income_and_expenses=收入",
     "goods=理财赎回": "pay_way=余额宝,income_and_expenses=收入",
@@ -106,4 +108,9 @@ trace_change_map = {
     "goods=余额宝-自动转入": "income_and_expenses=支出",
     "goods=北京市12123交通罚没": "income_and_expenses=支出",
     "goods=理财买入": "income_and_expenses=支出",
+    "goods=收到支付宝五福的红包": "pay_way=余额",
+    "goods=天天领现金活动每日红包": "pay_way=余额",
+    "goods=七彩虹GTX970": "pay_way=余额",
+    "trace_obj=北京一卡通&goods=转账": "pay_way=余额",
+    "trace_obj=*军&goods=商品": "pay_way=余额",
 }
