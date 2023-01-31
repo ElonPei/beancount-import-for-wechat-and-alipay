@@ -14,8 +14,9 @@ class Bean:
 
 
 class Item:
-    def __init__(self, account, amount):
+    def __init__(self, account, amount, account_rule=None):
         self.account = account
+        self.account_rule = account_rule
         self.amount = amount
         self.currency = 'CNY'
 

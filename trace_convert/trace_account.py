@@ -7,28 +7,28 @@ def match(account):
     for k, v in account_map['assets'].items():
         for i in k.split('|'):
             if account == i:
-                return v
+                return v, k + '->' + v
     for k, v in account_map['liabilities'].items():
         for i in k.split('|'):
             if account == i:
-                return v
-    return account
+                return v, k + '->' + v
+    return account, 'NotFoundRule'
 
 
 def match_expenses(bean):
     for k, v in account_map['expenses'].items():
         for i in k.split('|'):
             if i in bean.desc or i in bean.location:
-                return v
-    return 'Expenses:Unknown'
+                return v, k + '->' + v
+    return 'Expenses:Unknown', 'NotFoundExpensesRule'
 
 
 def match_income(bean):
     for k, v in account_map['income'].items():
         for i in k.split('|'):
             if i in bean.desc or i in bean.location:
-                return v
-    return 'Income:Unknown'
+                return v, k + '->' + v
+    return 'Income:Unknown', 'NotFoundIncomeRule'
 
 
 def convert_account(beans):
@@ -36,15 +36,20 @@ def convert_account(beans):
         item = bean.items[0]
 
         # 相关账户
-        related_account_item = Item(account=match(item.account), amount=None)
+        account, rule = match(item.account)
+        related_account_item = Item(account=account, amount=None, account_rule=rule)
         bean.items.append(related_account_item)
 
         # 支出的情况
         if item.amount >= 0:
-            item.account = match_expenses(bean)
+            account, rule = match_expenses(bean)
+            item.account = account
+            item.account_rule = rule
         # 收入的情况
         if item.amount < 0:
-            item.account = match_income(bean)
+            account, rule = match_income(bean)
+            item.account = account
+            item.account_rule = rule
 
     return beans
 
