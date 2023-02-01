@@ -6,15 +6,20 @@ account_map = {
         "余利宝": "Assets:Alipay:YuLiBao",
         "零钱": "Assets:Wechat:LingQian",
         "零钱通": "Assets:Wechat:LingQianTong",
-        "工商银行(6086)|工商银行|中国工商银行|中国工商银行储蓄卡(6086)": "Assets:ICBC",
+        "工商银行(6086)|工商银行|中国工商银行|中国工商银行储蓄卡(6086)|工商银行(9687)": "Assets:ICBC",
         "招商银行(4481)|招商银行储蓄卡(4481)": "Assets:CMB",
         "民生银行(9564)|中国民生银行储蓄卡(9564)": "Assets:MSB",
-        "中国农业银行储蓄卡(2970)|中国农业银行": "Assets:CAB",
+        "中国农业银行储蓄卡(2970)|中国农业银行|(2970)": "Assets:CAB",
         "中国建设银行|中国建设银行储蓄卡(0475)": "Assets:CCB",
         "广发银行": "Assets:GDB",
         "网商银行储蓄卡(0763)": "Assets:MYbank",
         "北京银行储蓄卡(4991)": "Assets:BCB",
         "交通银行储蓄卡(8186)": "Assets:BOCOM",
+    },
+    "liabilities": {
+        "招商银行(5250)|招商银行(1787)|招商银行|招商银行信用卡(5250)": "Liabilities:CreditCard:CMB",
+        "广发银行信用卡(4537)": "Liabilities:CreditCard:GDB",
+        "花呗|花呗分期|花呗分期(6期)": "Liabilities:Alipay:HuaBai",
     },
     "expenses": {
         # 居家
@@ -82,11 +87,6 @@ account_map = {
         "余额宝": "Income:MoneyFund:Alipay:YuEBao",
         "转账": "Income:TransferIn",
         "退款": "Income:Refund",
-    },
-    "liabilities": {
-        "招商银行(5250)|招商银行(1787)|招商银行|招商银行信用卡(5250)": "Liabilities:CreditCard:CMB",
-        "广发银行信用卡(4537)": "Liabilities:CreditCard:GDB",
-        "花呗|花呗分期|花呗分期(6期)": "Liabilities:Alipay:HuaBai",
     },
     "equity": {
         "DEFAULT": "Equity:Opening-Balances"
