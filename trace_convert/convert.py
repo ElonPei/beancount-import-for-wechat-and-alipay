@@ -17,7 +17,7 @@ def amount_format(obj, row):
         obj = obj[1:]
     if '收入' in income_and_expenses:
         return - float(obj)
-    if '支出' in income_and_expenses:
+    if '支出' in income_and_expenses or '调拨' in income_and_expenses:
         return float(obj)
     raise Exception('无法判断收支情况', income_and_expenses)
 
@@ -54,7 +54,7 @@ def convert(df):
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, row))
-        bean = Bean(date=datetime_format(date), location=trace_obj, desc=goods, items=[item], source_trace=row)
+        bean = Bean(date=datetime_format(date), location=trace_obj, desc=goods, items=[item], source_trace=row, income_and_expenses=income_and_expenses)
         beans.append(bean)
     return convert_account(beans)
 

@@ -1,10 +1,11 @@
 class Bean:
-    def __init__(self, date, location, desc, items, source_trace):
+    def __init__(self, date, location, desc, items, source_trace, income_and_expenses):
         self.source_trace = source_trace
         self.date = date
         self.location = location
         self.desc = desc
         self.items = items
+        self.income_and_expenses = income_and_expenses
 
     def __str__(self):
         items = ''

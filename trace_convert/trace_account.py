@@ -33,6 +33,14 @@ def match_income(bean):
     return 'Income:Unknown', 'NotFoundIncomeRule'
 
 
+def match_assets(bean):
+    for k, v in account_map['assets'].items():
+        for i in k.split('|'):
+            if i in bean.desc or i in bean.location:
+                return v, k + '->' + v
+    return 'Assets:Unknown', 'NotFoundAssetsRule'
+
+
 def convert_account(beans):
     for bean in beans:
         item = bean.items[0]
@@ -42,17 +50,15 @@ def convert_account(beans):
         related_account_item = Item(account=account, amount=None, account_rule=rule)
         bean.items.append(related_account_item)
 
-        # 支出的情况
-        if item.amount >= 0:
+        if '支出' in bean.income_and_expenses:
             account, rule = match_expenses(bean)
-            item.account = account
-            item.account_rule = rule
-        # 收入的情况
-        if item.amount < 0:
+        if '收入' in bean.income_and_expenses:
             account, rule = match_income(bean)
-            item.account = account
-            item.account_rule = rule
+        if '调拨' in bean.income_and_expenses:
+            account, rule = match_assets(bean)
 
+        item.account = account
+        item.account_rule = rule
     return beans
 
 
