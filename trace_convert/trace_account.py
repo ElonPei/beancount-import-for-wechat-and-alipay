@@ -71,11 +71,13 @@ def is_match_rule(match_rule, row):
 
 
 def convert_trace_change(row):
+    change_rule = ''
     for match_rule, result in trace_change_map.items():
         if is_match_rule(match_rule, row):
             for item in result.split(','):
                 row[item.split('=')[0]] = item.split('=')[1]
-    return row
+                change_rule = change_rule + " " + item
+    return row, change_rule
 
 
 def export_account_data():

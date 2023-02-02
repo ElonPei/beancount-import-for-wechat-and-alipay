@@ -11,9 +11,9 @@ def beans_to_file(file, beans):
         content = content + title + '\n'
 
         # 注释
-        content = content + '\t; org: ' + ''.join(['{0}->{1} '.format(k, v) for k,v in bean.source_trace.items()]) + '\n'
-        content = content + '\t; change_rule: ' + '\n'
-        content = content + '\t; new: ' + '\n'
+        content = content + '\t; org: ' + ''.join(['{0}->{1} '.format(k, v) for k,v in bean.org_trace.items()]) + '\n'
+        content = content + '\t; change_rule: ' + bean.change_rule + '\n'
+        content = content + '\t; new: ' + bean.new_trace + '\n'
 
         for item in bean.items:
             content = content + '\t' + (item.account if item.account else 'Assets:Unknown') + ' ' + (str(item.amount) if item.amount else '') + ' ' + (item.currency if item.amount else '')

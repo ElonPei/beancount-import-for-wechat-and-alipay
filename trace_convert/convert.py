@@ -30,7 +30,8 @@ def convert(df):
     print(df.head())
     beans = []
     for index, row in df.iterrows():
-        row = convert_trace_change(row)
+        org_row = row
+        row, change_rule = convert_trace_change(row)
 
         date = row['date']
         trace_type = row['trace_type']
@@ -54,7 +55,14 @@ def convert(df):
         print()
 
         item = Item(account=pay_way, amount=amount_format(amount, row))
-        bean = Bean(date=datetime_format(date), location=trace_obj, desc=goods, items=[item], source_trace=row, income_and_expenses=income_and_expenses)
+        bean = Bean(date=datetime_format(date),
+                    location=trace_obj,
+                    desc=goods,
+                    items=[item],
+                    income_and_expenses=income_and_expenses,
+                    org_trace=org_row,
+                    change_rule=change_rule,
+                    new_trace=row)
         beans.append(bean)
     return convert_account(beans)
 

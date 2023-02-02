@@ -1,11 +1,14 @@
 class Bean:
-    def __init__(self, date, location, desc, items, source_trace, income_and_expenses):
-        self.source_trace = source_trace
+    def __init__(self, date, location, desc, items, income_and_expenses, org_trace, change_rule, new_trace):
         self.date = date
         self.location = location
         self.desc = desc
         self.items = items
         self.income_and_expenses = income_and_expenses
+        self.org_trace = org_trace
+        self.change_rule = change_rule
+        self.new_trace = new_trace
+
 
     def __str__(self):
         items = ''
