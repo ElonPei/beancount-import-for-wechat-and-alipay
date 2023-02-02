@@ -66,7 +66,7 @@ account_map = {
 
         # 购物
         "鞋|衣服|银泰|天街|屈臣氏|印象城|袜子|内裤|pay|NIKE|李宁|迪卡侬|优衣库|GAP|gxg": "Expenses:Shopping:Clothing ",  # 服饰鞋包
-        "Apple Store|玩客云|大疆|树莓派|U盘|显卡|小米|ATX电源|迅雷|iCloud|iSlide|switch|App Store|applestore|BandwagonHost|域名|网卡|服务器|硬盘|NAS|内存|路由器|airpods|macbook|Mac": "Expenses:Shopping:Digital ",
+        "Apple Store|玩客云|大疆|树莓派|U盘|显卡|小米|ATX电源|迅雷|iCloud|iSlide|switch|App Store|applestore|BandwagonHost|域名|网卡|服务器|硬盘|NAS|内存|路由器|airpods|macbook|Mac|iPhone": "Expenses:Shopping:Digital ",
 
         # 电子数码
         "面包机|高压锅": "Expenses:Shopping:Home ",  # 家居百货
@@ -130,6 +130,7 @@ trace_change_map = {
     "trace_obj=北京一卡通&goods=转账": "pay_way=余额",
     "trace_obj=*军&goods=商品": "pay_way=余额",
     "goods=转账到银行卡": "income_and_expenses=调拨",
+    "goods=转出到网商银行": "income_and_expenses=调拨",
     "goods=转出到余额": "income_and_expenses=调拨,pay_way=余额",
     "goods=定期理财-": "income_and_expenses=调拨",
     "goods=红包奖励发放": "income_and_expenses=收入,pay_way=余额宝",
