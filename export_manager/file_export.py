@@ -7,11 +7,14 @@ def beans_to_file(file, beans):
     """
     content = ''
     for bean in beans:
-        content = content + '; org: ' + ''.join(['{0}->{1} '.format(k, v) for k,v in bean.source_trace.items()]) + '\n'
-        content = content + '; change_rule: ' + '\n'
-        content = content + '; new: ' + '\n'
         title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"'
         content = content + title + '\n'
+
+        # 注释
+        content = content + '\t; org: ' + ''.join(['{0}->{1} '.format(k, v) for k,v in bean.source_trace.items()]) + '\n'
+        content = content + '\t; change_rule: ' + '\n'
+        content = content + '\t; new: ' + '\n'
+
         for item in bean.items:
             content = content + '\t' + (item.account if item.account else 'Assets:Unknown') + ' ' + (str(item.amount) if item.amount else '') + ' ' + (item.currency if item.amount else '')
             content = content + ('\t;' + item.account_rule if item.account_rule else '') + '\n'

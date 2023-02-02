@@ -9,7 +9,7 @@ account_map = {
         "工商银行(6086)|工商银行|中国工商银行|中国工商银行储蓄卡(6086)|工商银行(9687)": "Assets:ICBC",
         "招商银行(4481)|招商银行储蓄卡(4481)": "Assets:CMB",
         "民生银行(9564)|中国民生银行储蓄卡(9564)": "Assets:MSB",
-        "中国农业银行储蓄卡(2970)|中国农业银行|(2970)": "Assets:CAB",
+        "中国农业银行储蓄卡(2970)|中国农业银行|(2970)|农业银行|农业银行(2970)": "Assets:CAB",
         "中国建设银行|中国建设银行储蓄卡(0475)": "Assets:CCB",
         "广发银行": "Assets:GDB",
         "网商银行储蓄卡(0763)": "Assets:MYbank",
@@ -66,7 +66,7 @@ account_map = {
 
         # 购物
         "鞋|衣服|银泰|天街|屈臣氏|印象城|袜子|内裤|pay|NIKE|李宁|迪卡侬|优衣库|GAP|gxg": "Expenses:Shopping:Clothing ",  # 服饰鞋包
-        "Apple Store|玩客云|大疆|树莓派|U盘|显卡|小米|ATX电源|迅雷|iCloud|iSlide|switch|App Store|applestore|BandwagonHost|域名|网卡|服务器|硬盘|NAS|内存|路由器|airpods|macbook|Mac|iPhone": "Expenses:Shopping:Digital ",
+        "Apple Store|玩客云|大疆|树莓派|U盘|显卡|小米|ATX电源|迅雷|iCloud|iSlide|switch|App Store|applestore|BandwagonHost|域名|网卡|服务器|硬盘|NAS|内存|路由器|airpods|macbook|Mac|iPhone|iphone|苹果电子产品|SEIKO精工|手表维修": "Expenses:Shopping:Digital ",
 
         # 电子数码
         "面包机|高压锅": "Expenses:Shopping:Home ",  # 家居百货
