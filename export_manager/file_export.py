@@ -7,11 +7,11 @@ def beans_to_file(file, beans):
     """
     content = ''
     for bean in beans:
-        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"'
+        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"' + '\t; ' + bean.trace_type
         content = content + title + '\n'
 
         # 注释
-        content = content + '\t; org: ' + ''.join(['{0}->{1} '.format(k, v) for k,v in bean.org_trace.items()]) + '\n'
+        # content = content + '\t; org: ' + bean.org_trace + '\n'
         content = content + '\t; change_rule: ' + bean.change_rule + '\n'
         content = content + '\t; new: ' + bean.new_trace + '\n'
 
