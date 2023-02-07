@@ -51,11 +51,26 @@ def convert_account(beans):
     return beans
 
 
+def row_to_dict(row):
+    return {
+        "date": row['date'],
+        "trace_type": row['trace_type'],
+        "trace_obj": row['trace_obj'],
+        "goods": row['goods'],
+        "income_and_expenses": row['income_and_expenses'],
+        "amount": row['amount'],
+        "pay_way": row['pay_way'],
+        "status": row['status'],
+        "source": row['source'],
+    }
+
+
 def convert(df):
     print(df.head())
     beans = []
     for index, row in df.iterrows():
-        org_row = row
+        org_row = row_to_dict(row)
+
         row, change_rule = convert_trace_change(row)
 
         date = row['date']
@@ -79,6 +94,8 @@ def convert(df):
         print('来源 -> ', source)
         print()
 
+        new_row = row_to_dict(row)
+
         item = Item(account=pay_way, amount=amount_format(amount, row))
         bean = Bean(date=datetime_format(date),
                     trace_type=trace_type,
@@ -86,9 +103,9 @@ def convert(df):
                     desc=goods,
                     items=[item],
                     income_and_expenses=income_and_expenses,
-                    org_trace=org_row,
-                    change_rule=change_rule,
-                    new_trace=row)
+                    log_org_trace=org_row,
+                    log_change_rule=change_rule,
+                    log_new_trace=new_row)
         beans.append(bean)
     return convert_account(beans)
 
