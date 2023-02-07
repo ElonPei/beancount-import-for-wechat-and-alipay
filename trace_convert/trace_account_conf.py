@@ -37,13 +37,3 @@ def get_all_account_list():
     account_list.extend(list(AccountConf.dict_income.keys()))
     account_list.extend(list(AccountConf.dict_liabilities.keys()))
     return account_list
-
-
-if __name__ == '__main__':
-    print(AccountConf.trace_change)
-    print(AccountConf.assets)
-    print(AccountConf.equity)
-    print(AccountConf.expenses)
-    print(AccountConf.income)
-    print(AccountConf.liabilities)
-    print(get_all_account_list())

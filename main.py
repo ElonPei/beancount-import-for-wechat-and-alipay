@@ -1,11 +1,20 @@
 from export_manager.file_export import beans_to_file, accounts_to_file
 from import_manager.trace_loader import load_wechat_trace, load_alipay_trace
 from trace_convert.convert import convert
-from trace_convert.trace_account_conf import get_all_account_list
+from trace_convert.trace_account_conf import get_all_account_list, AccountConf
 
 content_path = '/Users/peiel/PycharmProjects/beancount-import-for-wechat-and-alipay/out/'
 
 if __name__ == '__main__':
+
+    # print(AccountConf.trace_change)
+    # print(AccountConf.assets)
+    # print(AccountConf.equity)
+    # print(AccountConf.expenses)
+    # print(AccountConf.income)
+    # print(AccountConf.liabilities)
+    # print(get_all_account_list())
+
     wechat_df = load_wechat_trace()
     wechat_beans = convert(wechat_df)
     beans_to_file(file=content_path + 'wechat.bean', beans=wechat_beans)

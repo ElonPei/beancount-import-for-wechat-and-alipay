@@ -44,9 +44,44 @@ def convert_trace_change(row):
     return row, change_rule
 
 
+def match_expenses(bean):
+    expenses = AccountConf.expenses
+    # 绝对匹配
+    if bean.location in expenses:
+        return expenses[bean.location], bean.location + '->' + expenses[bean.location]
+    if bean.desc in expenses:
+        return expenses[bean.desc], bean.desc + '->' + expenses[bean.desc]
+    # 模糊匹配
+    for text, account in expenses.items():
+        if text in bean.location or text in bean.desc:
+            return account, text + '->' + account
+    return expenses['未知'], None
+
+
+def match_payment_account(bean):
+    assets = AccountConf.assets
+    liabilities = AccountConf.liabilities
+    if '&' in bean.pay_way:
+        bean.pay_way = bean.pay_way.split('&')[0]
+    if bean.pay_way in assets:
+        return assets[bean.pay_way]
+    if bean.pay_way in liabilities:
+        return liabilities[bean.pay_way]
+    raise Exception('无法判断付款账户', bean)
+
+
 def convert_account(beans):
     for bean in beans:
         item = bean.items[0]
+        if bean.income_and_expenses == '支出':
+            # 使用匹配来确定支出的类型
+            item.account, item.account_rule = match_expenses(bean)
+            bean.items.append(Item(account=match_payment_account(bean)))
+            pass
+        if bean.income_and_expenses == '收入':
+            pass
+        if bean.income_and_expenses == '调拨':
+            pass
 
     return beans
 
@@ -103,6 +138,7 @@ def convert(df):
                     desc=goods,
                     items=[item],
                     income_and_expenses=income_and_expenses,
+                    pay_way=pay_way,
                     log_org_trace=org_row,
                     log_change_rule=change_rule,
                     log_new_trace=new_row)
