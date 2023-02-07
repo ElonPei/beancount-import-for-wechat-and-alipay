@@ -1,6 +1,12 @@
+"Income:Unknown":
+  - "未知"
 "Income:MoneyFund:Alipay:YuEBao":
   - "余额宝"
 "Income:TransferIn":
   - "转账"
 "Income:Refund":
   - "退款"
+"Income:Hutao":
+  - "Evan Hu"
+"Income:HuLiKai":
+  - "胡立凯"

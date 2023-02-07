@@ -58,16 +58,53 @@ def match_expenses(bean):
     return expenses['未知'], None
 
 
-def match_payment_account(bean):
+def match_assets(bean):
     assets = AccountConf.assets
-    liabilities = AccountConf.liabilities
-    if '&' in bean.pay_way:
-        bean.pay_way = bean.pay_way.split('&')[0]
+    if bean.pay_way == '' or bean.pay_way == '/':
+        return assets['未知']
     if bean.pay_way in assets:
         return assets[bean.pay_way]
+    return None
+
+
+def match_liabilities(bean):
+    # 兼容招行交易时的描述
+    if '&' in bean.pay_way:
+        bean.pay_way = bean.pay_way.split('&')[0]
+    liabilities = AccountConf.liabilities
     if bean.pay_way in liabilities:
         return liabilities[bean.pay_way]
+    return None
+
+
+def match_payment_account(bean):
+    account_assets = match_assets(bean)
+    if account_assets:
+        return account_assets
+    account_liabilities = match_liabilities(bean)
+    if account_liabilities:
+        return account_liabilities
     raise Exception('无法判断付款账户', bean)
+
+
+def match_receive_account(bean):
+    account_assets = match_assets(bean)
+    if account_assets:
+        return account_assets
+    account_income, _ = match_income(bean)
+    if account_income:
+        return account_income
+    raise Exception('无法判断收款账户', bean)
+
+
+def match_income(bean):
+    income = AccountConf.income
+    if bean.trace_obj in income:
+        return income[bean.trace_obj], bean.trace_obj + '->' + income[bean.trace_obj]
+    for text, account in income.items():
+        if text in bean.trace_obj:
+            return account, text + '->' + account
+    return income['未知'], None
 
 
 def convert_account(beans):
@@ -79,6 +116,9 @@ def convert_account(beans):
             bean.items.append(Item(account=match_payment_account(bean)))
             pass
         if bean.income_and_expenses == '收入':
+            # trace_obj 是收入来源
+            item.account, item.account_rule = match_income(bean)
+            bean.items.append(Item(account=match_receive_account(bean)))
             pass
         if bean.income_and_expenses == '调拨':
             pass
@@ -139,6 +179,7 @@ def convert(df):
                     items=[item],
                     income_and_expenses=income_and_expenses,
                     pay_way=pay_way,
+                    trace_obj=trace_obj,
                     log_org_trace=org_row,
                     log_change_rule=change_rule,
                     log_new_trace=new_row)
