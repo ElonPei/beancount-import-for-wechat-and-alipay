@@ -114,6 +114,7 @@ def match_diaobo_obj(bean):
     return assets['未知']
 
 
+# todo 这里方法调用比较混乱需要优化
 def convert_account(beans):
     for bean in beans:
         item = bean.items[0]
