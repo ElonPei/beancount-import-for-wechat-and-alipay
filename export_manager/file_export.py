@@ -28,9 +28,5 @@ def accounts_to_file(file, accounts):
     content = ''
     for account in accounts:
         content = content + '1993-02-13 open ' + account + ' CNY' + '\n'
-
-    content = content + '1993-02-13 open ' + 'Expenses:Unknown' + ' CNY' + '\n'
-    content = content + '1993-02-13 open ' + 'Income:Unknown' + ' CNY' + '\n'
-
     with open(file, 'w+') as f:
         f.write(content)
