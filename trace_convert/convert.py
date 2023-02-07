@@ -40,7 +40,7 @@ def convert_trace_change(row):
         if is_match_rule(match_rule, row):
             for item in result.split(','):
                 row[item.split('=')[0]] = item.split('=')[1]
-                change_rule = change_rule + " " + item
+                change_rule = change_rule + " " + match_rule + "->" + item
     return row, change_rule
 
 
