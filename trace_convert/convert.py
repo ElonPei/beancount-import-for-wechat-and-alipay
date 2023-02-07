@@ -15,9 +15,9 @@ def amount_format(amount, row):
 
     if '$' in amount or '¥' in amount:
         amount = amount[1:]
-    if '收入' in income_and_expenses:
+    if '收入' in income_and_expenses or '调拨' in income_and_expenses:
         return - float(amount)
-    if '支出' in income_and_expenses or '调拨' in income_and_expenses:
+    if '支出' in income_and_expenses:
         return float(amount)
     raise Exception('无法判断收支情况', income_and_expenses)
 
@@ -107,6 +107,13 @@ def match_income(bean):
     return income['未知'], None
 
 
+def match_diaobo_obj(bean):
+    assets = AccountConf.assets
+    if bean.trace_obj in assets:
+        return assets[bean.trace_obj]
+    return assets['未知']
+
+
 def convert_account(beans):
     for bean in beans:
         item = bean.items[0]
@@ -114,14 +121,14 @@ def convert_account(beans):
             # 使用匹配来确定支出的类型
             item.account, item.account_rule = match_expenses(bean)
             bean.items.append(Item(account=match_payment_account(bean)))
-            pass
         if bean.income_and_expenses == '收入':
             # trace_obj 是收入来源
             item.account, item.account_rule = match_income(bean)
             bean.items.append(Item(account=match_receive_account(bean)))
-            pass
         if bean.income_and_expenses == '调拨':
-            pass
+            # trace_obj 是调拨目标
+            item.account = match_assets(bean)
+            bean.items.append(Item(account=match_diaobo_obj(bean)))
 
     return beans
 
