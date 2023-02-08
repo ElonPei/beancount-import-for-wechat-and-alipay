@@ -2,13 +2,205 @@
 "Expenses:Unknown":
   - "未知"
 
-# 交通
-"Expenses:Transport:PublicTransportation":
+# 基本生活保障 - 食品
+"Expenses:BaseLife:Food:DailyMeals": ## 一日三餐
+  - "味多美"
+  - "好利来"
+  - "京速便利"
+  - "地铁便利"
+  - "重庆小面"
+  - "小天府"
+  - "北京三环惠众商贸中心"
+  - "天宫院小吃"
+  - "餐厅"
+  - "烤肉"
+  - "羊汤"
+  - "拉面"
+  - "果多美"
+  - "麦当劳"
+  - "肯德基"
+  - "必胜客"
+  - "煎饼"
+  - "凉皮"
+  - "排骨"
+  - "驴肉火烧"
+  - "华莱士"
+  - "一碗山城"
+  - "渝港小镇"
+  - "南城香"
+  - "饺子"
+  - "鸡蛋灌饼"
+  - "黄焖鸡"
+  - "炖菜"
+  - "菜篮子"
+  - "生煎"
+  - "西部马华"
+  - "臭豆腐"
+  - "炸鸡"
+  - "烤冷面"
+  - "鸭肠"
+  - "面馆"
+  - "餐饮"
+  - "美食广场"
+  - "菜馆"
+  - "权金城"
+  - "水站"
+  - "呷哺"
+  - "刀削面"
+  - "寿司"
+  - "凤饺缘"
+  - "板面"
+  - "鲍师傅"
+  - "景田矿泉水"
+  - "蛋糕"
+  - "包子"
+  - "肉串汪"
+  - "护国寺小吃"
+  - "郝家副食店"
+  - "扒鸡"
+  - "美团"
+  - "饿了么"
+  - "小吃店"
+  - "宜城香"
+"Expenses:BaseLife:Food:SuperMarket": ## 超市
+  - "超市"
+  - "永辉"
+  - "家乐福"
+  - "北国超市"
+  - "北国商城"
+  - "好邻居"
+  - "勤家便利"
+  - "邻家便利店"
+  - "36524便利店"
+  - "小卖部"
+  - "华隆商店"
+  - "全时生活"
+  - "名创优品"
+  - "7-ELEVEn"
+  - "汾酒竹叶青"
+  - "无印良品"
+"Expenses:BaseLife:Food:Coffee": ## 咖啡
+  - "瑞幸咖啡"
+"Expenses:BaseLife:Food:Snack": ## 零食
+  - "零食"
+  - "冰淇淋"
+"Expenses:BaseLife:Food:Drink": ## 饮料
+  - "茶百道"
+# 基本生活保障 - 住房
+"Expenses:BaseLife:House":
+  - "宜家"
+"Expenses:BaseLife:House:Rent": ## 房租
+  - "房租"
+"Expenses:BaseLife:House:Property": ## 物业
+  - "物业费"
+"Expenses:BaseLife:House:Utilities": ## 水电燃气
+  - "水费"
+  - "电费"
+  - "物业费"
+"Expenses:BaseLife:House:Broadband": ## 宽带费用
+  - "宽带费用"
+# 基本生活保障 - 交通
+"Expenses:BaseLife:Transport:PublicTransportation": ## 公共交通
   - "公交"
   - "北京一卡通"
-"Expenses:Transport:Didi":
+  - "火车票"
+  - "哈啰出行"
+"Expenses:BaseLife:Transport:Car:Parking": ## 停车费
+  - "停车费"
+  - "ETCP停车"
+"Expenses:BaseLife:Transport:Car:Fueling": ## 加油
+  - "车辆加油"
+  - "中国石化"
+  - "中国石油"
+"Expenses:BaseLife:Transport:Car:Insurance": ## 保险
+  - "车辆保险"
+"Expenses:BaseLife:Transport:Car:Maintenance": ## 保养
+  - "车辆保养"
+"Expenses:BaseLife:Transport:Car:Repair": ## 维修
+  - "车辆维修"
+"Expenses:BaseLife:Transport:Taxi": ## 打车
   - "滴滴出行"
+# 基本生活保障 - 美容美发
+"Expenses:BaseLife:BeautyAndHair":
+  - "理发"
+  - "造型"
 
-# 餐饮
-"Expenses:Food":
-  - "味多美"
+# 升级消费 - 快递通讯
+"Expenses:UpgradeConsumption:Express": ## 快递
+  - "魏玉营"
+  - "顺丰速运"
+"Expenses:UpgradeConsumption:Newsletters": ## 通讯
+  - "中国移动"
+  - "中国联通"
+  - "北京移动"
+  - "北京联通"
+  - "河北移动"
+  - "河北联通"
+
+# 升级消费 - 衣服鞋帽
+"Expenses:UpgradeConsumption:Cloth": ## 衣服
+  - "上衣"
+  - "优衣库"
+  - "耐克"
+  - "李宁"
+  - "童装"
+# 升级消费 - 化妆品
+"Expenses:UpgradeConsumption:Cosmetics": ## 化妆品
+  - "化妆品"
+  - "屈臣氏"
+# 升级消费 - 电子产品
+"Expenses:UpgradeConsumption:ElectricalProducts": ## 电子产品
+  - "电脑"
+  - "键盘"
+  - "App Store"
+  - "百度网盘"
+# 升级消费 - 云产品
+"Expenses:UpgradeConsumption:CloudProducts": ## 云产品
+  - "域名"
+  - "服务器"
+# 升级消费 - 投资型消费
+"Expenses:UpgradeConsumption:Investing": ## 投资
+  - "投资"
+
+# 人情往来
+"Expenses:UpgradeConsumption:Favors:Relative": ## 亲戚
+  - "亲戚"
+"Expenses:UpgradeConsumption:Favors:Parent": ## 长辈
+  - "长辈"
+"Expenses:UpgradeConsumption:Favors:Siblings": ## 兄弟姐妹
+  - "哥哥"
+  - "妹妹"
+"Expenses:UpgradeConsumption:Favors:Donation": ## 捐赠
+  - "捐款"
+
+# 娱乐
+"Expenses:UpgradeConsumption:Entertain": ## 娱乐
+  - "抓娃娃"
+  - "摩摩哒"
+  - "网易云音乐"
+"Expenses:UpgradeConsumption:Entertain:Travel": ## 旅行
+  - "门票"
+"Expenses:UpgradeConsumption:Entertain:Game": ## 游戏充值
+  - "游戏充值"
+  - "DNF点券"
+  - "DNF黑钻"
+  - "塞尔达"
+  - "游戏机"
+
+# 教育
+"Expenses:UpgradeConsumption:Education:Kindergarten": ## 幼儿园
+  - "幼儿园"
+"Expenses:UpgradeConsumption:Education:Book": ## 书籍
+  - "书籍"
+
+# 医疗
+"Expenses:UpgradeConsumption:Medical":
+  - "医疗"
+  - "叮当快药"
+  - "快方送药"
+  - "美年美合门诊部"
+  - "药房"
+
+# 保险
+"Expenses:UpgradeConsumption:Insurance":
+  - "保险"
