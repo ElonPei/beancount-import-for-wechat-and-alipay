@@ -6,6 +6,8 @@
 "Expenses:Transport:PublicTransportation":
   - "公交"
   - "北京一卡通"
+"Expenses:Transport:Didi":
+  - "滴滴出行"
 
 # 餐饮
 "Expenses:Food":
