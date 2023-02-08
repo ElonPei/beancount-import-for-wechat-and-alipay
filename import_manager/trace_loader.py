@@ -3,13 +3,23 @@ import os
 import pandas as pd
 
 import import_manager.formater_csv as fmt
-from import_manager.trace_filter import filter_df
+from import_manager.trace_filter import delete_not_use_trace
 
 trade_path = '/Users/peiel/Desktop/123/'
 
 
 def sort_by_trace_time(df):
     return df.sort_values('date')
+
+
+def filter_df(df):
+    df = sort_by_trace_time(df)
+    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    df = delete_not_use_trace(df)
+    df.drop_duplicates(
+        subset=['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status'],
+        keep='first', inplace=True)
+    return df
 
 
 def load_wechat_trace():
@@ -24,8 +34,6 @@ def load_wechat_trace():
     df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7]]
     df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status']
     df['source'] = 'wechat'
-    df = sort_by_trace_time(df)
-    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df = filter_df(df)
     return df
 
@@ -42,8 +50,6 @@ def load_alipay_trace():
     df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6]]
     df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status']
     df['source'] = 'alipay'
-    df = sort_by_trace_time(df)
-    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df = filter_df(df)
     return df
 
@@ -53,4 +59,3 @@ if __name__ == '__main__':
     print(wechat_df.head())
     alipay_df = load_alipay_trace()
     print(alipay_df.head())
-

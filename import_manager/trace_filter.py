@@ -1,4 +1,4 @@
-def filter_df(df):
+def delete_not_use_trace(df):
     df = df.loc[df['status'] != '交易关闭']
     df = df.loc[df['status'] != '冻结成功']
     df = df.loc[df['status'] != '代付关闭']
