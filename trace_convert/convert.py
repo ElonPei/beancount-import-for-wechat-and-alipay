@@ -44,27 +44,13 @@ def convert_trace_change(row):
     return row, change_rule
 
 
-def match_expenses(bean):
-    expenses = AccountConf.expenses
-    # 绝对匹配
-    if bean.location in expenses:
-        return expenses[bean.location], bean.location + '->' + expenses[bean.location]
-    if bean.desc in expenses:
-        return expenses[bean.desc], bean.desc + '->' + expenses[bean.desc]
-    # 模糊匹配
-    for text, account in expenses.items():
-        if text in bean.location or text in bean.desc:
-            return account, text + '->' + account
-    return expenses['未知'], None
-
-
-def match_assets(bean):
+def match_fund_transfer_account(pay_way):
     assets = AccountConf.assets
-    if bean.pay_way == '' or bean.pay_way == '/':
-        return assets['未知']
-    if bean.pay_way in assets:
-        return assets[bean.pay_way]
-    return None
+    if pay_way == '' or pay_way == '/':
+        return assets['未知'], None
+    if pay_way in assets:
+        return assets[pay_way], pay_way + ' -> ' + assets[pay_way]
+    return assets['未知'], None
 
 
 def match_liabilities(bean):
@@ -77,59 +63,80 @@ def match_liabilities(bean):
     return None
 
 
-def match_payment_account(bean):
-    account_assets = match_assets(bean)
-    if account_assets:
-        return account_assets
-    account_liabilities = match_liabilities(bean)
-    if account_liabilities:
-        return account_liabilities
-    raise Exception('无法判断付款账户', bean)
+def pay_way_to_account(pay_way):
+    """
+    匹配支付账户
+    :return:
+    """
+    assets = AccountConf.assets
+    liabilities = AccountConf.liabilities
+    # 兼容招行交易时的描述
+    if '&' in pay_way:
+        pay_way = pay_way.split('&')[0]
+    if pay_way == '' or pay_way == '/':
+        return assets['未知']
+
+    if pay_way in assets:
+        return assets[pay_way]
+    if pay_way in liabilities:
+        return liabilities[pay_way]
+    raise Exception('无法判断支付方式对应的账户', pay_way)
 
 
-def match_receive_account(bean):
-    account_assets = match_assets(bean)
-    if account_assets:
-        return account_assets
-    account_income, _ = match_income(bean)
-    if account_income:
-        return account_income
-    raise Exception('无法判断收款账户', bean)
-
-
-def match_income(bean):
+def match_income_account(trace_obj):
+    """
+    匹配收入来源账户
+    """
     income = AccountConf.income
-    if bean.trace_obj in income:
-        return income[bean.trace_obj], bean.trace_obj + '->' + income[bean.trace_obj]
+    if trace_obj in income:
+        return income[trace_obj], trace_obj + '->' + income[trace_obj]
     for text, account in income.items():
-        if text in bean.trace_obj:
+        if text in trace_obj:
             return account, text + '->' + account
     return income['未知'], None
 
 
-def match_diaobo_obj(bean):
+def trance_obj_to_account(trace_obj):
     assets = AccountConf.assets
-    if bean.trace_obj in assets:
-        return assets[bean.trace_obj]
+    if trace_obj in assets:
+        return assets[trace_obj]
     return assets['未知']
 
 
-# todo 这里方法调用比较混乱需要优化
+def match_expenses_account(location, desc):
+    """
+    匹配支出账户
+    """
+    expenses = AccountConf.expenses
+    # 绝对匹配
+    if location in expenses:
+        return expenses[location], location + '->' + expenses[location]
+    if desc in expenses:
+        return expenses[desc], desc + '->' + expenses[desc]
+    # 模糊匹配
+    for text, account in expenses.items():
+        if text in location or text in desc:
+            return account, text + '->' + account
+    return expenses['未知'], None
+
+
 def convert_account(beans):
     for bean in beans:
         item = bean.items[0]
         if bean.income_and_expenses == '支出':
-            # 使用匹配来确定支出的类型
-            item.account, item.account_rule = match_expenses(bean)
-            bean.items.append(Item(account=match_payment_account(bean)))
+            # 使用 location desc 匹配来确定支出的类型
+            item.account, item.account_rule = match_expenses_account(bean.location, bean.desc)
+            # 使用 pay_way 匹配付款账户
+            bean.items.append(Item(account=pay_way_to_account(bean.pay_way)))
         if bean.income_and_expenses == '收入':
             # trace_obj 是收入来源
-            item.account, item.account_rule = match_income(bean)
-            bean.items.append(Item(account=match_receive_account(bean)))
+            item.account, item.account_rule = match_income_account(bean.trace_obj)
+            # pay_way 匹配的是到账的账户
+            bean.items.append(Item(account=pay_way_to_account(bean.pay_way)))
         if bean.income_and_expenses == '调拨':
+            item.account, item.account_rule = match_fund_transfer_account(bean.pay_way)
             # trace_obj 是调拨目标
-            item.account = match_assets(bean)
-            bean.items.append(Item(account=match_diaobo_obj(bean)))
+            bean.items.append(Item(account=trance_obj_to_account(bean.trace_obj)))
 
     return beans
 
