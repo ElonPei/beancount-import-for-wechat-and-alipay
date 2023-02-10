@@ -6,7 +6,10 @@ def beans_to_file(file, beans):
     :return:
     """
     content = ''
+    i = 1
     for bean in beans:
+        print('>>', i)
+        i = i + 1
         title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"' + '\t; ' + bean.trace_type
         content = content + title + '\n'
 

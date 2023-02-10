@@ -87,13 +87,18 @@
   - "粉巷"
   - "绿豆"
   - "柿子饼"
+  - "商户_崔建民"
 
+  - "卢艳芳" # 水果店
+  - "娟子" # 早餐鸡蛋灌饼
   - "慧敏"
   - "曹恒"
   - "那年蝉鸣"
   - "卫立华"
   - "闫煦"
   - "张亮"
+  - "沈婷"
+  - "张晟"
   - "商户_李通"
 
 "Expenses:BaseLife:Food:SuperMarket": ## 超市
@@ -116,6 +121,7 @@
   - "便利蜂"
   - "京东到家"
   - "高和便利"
+  - "如店优选"
 "Expenses:BaseLife:Food:Coffee": ## 咖啡
   - "瑞幸咖啡"
   - "luckin coffee"
@@ -135,6 +141,7 @@
   - "房租"
 "Expenses:BaseLife:House:Property": ## 物业
   - "物业费"
+  - "物业"
 "Expenses:BaseLife:House:Utilities": ## 水电燃气
   - "水费"
   - "电费"
@@ -167,6 +174,7 @@
   - "马自达"
 "Expenses:BaseLife:Transport:Car:Repair": ## 维修
   - "车辆维修"
+  - "卢敏" # 50块钱补胎
 "Expenses:BaseLife:Transport:Taxi": ## 打车
   - "滴滴出行"
 # 基本生活保障 - 美容美发
@@ -174,6 +182,7 @@
   - "理发"
   - "造型"
   - "美发店"
+  - "曹文"
 
 # 升级消费 - 快递通讯
 "Expenses:UpgradeConsumption:Express": ## 快递
@@ -213,6 +222,7 @@
   - "服务器"
   - "阿里云"
   - "sms-activate.org"
+  - "Star Horizon Corporation"
 # 升级消费 - 投资型消费
 "Expenses:UpgradeConsumption:Investing": ## 投资
   - "投资"
@@ -231,6 +241,7 @@
 # 娱乐
 "Expenses:UpgradeConsumption:Entertain": ## 娱乐
   - "抓娃娃"
+  - "布艺手工坊"
   - "摩摩哒"
   - "乐摩吧"
   - "网易云音乐"
