@@ -20,6 +20,7 @@
   - "麦当劳"
   - "肯德基"
   - "必胜客"
+  - "吉野家"
   - "煎饼"
   - "凉皮"
   - "排骨"
@@ -62,6 +63,21 @@
   - "饿了么"
   - "小吃店"
   - "宜城香"
+  - "牛奶便利"
+  - "熟食"
+  - "草莓"
+  - "慧敏"
+  - "鲜包"
+  - "小笼包"
+  - "紫光园"
+  - "嘉和一品"
+  - "李先生"
+  - "烧鸡"
+  - "老家肉饼"
+  - "青年公社"
+  - "食堂"
+  - "食品店"
+  - "烧饼"
 "Expenses:BaseLife:Food:SuperMarket": ## 超市
   - "超市"
   - "永辉"
@@ -79,13 +95,20 @@
   - "7-ELEVEn"
   - "汾酒竹叶青"
   - "无印良品"
+  - "HotMaxx"
+  - "便利蜂"
+  - "京东到家"
+  - "高和便利"
 "Expenses:BaseLife:Food:Coffee": ## 咖啡
   - "瑞幸咖啡"
+  - "luckin coffee"
 "Expenses:BaseLife:Food:Snack": ## 零食
   - "零食"
   - "冰淇淋"
 "Expenses:BaseLife:Food:Drink": ## 饮料
   - "茶百道"
+  - "益禾堂"
+  - "蜜雪冰城"
 # 基本生活保障 - 住房
 "Expenses:BaseLife:House":
   - "宜家"
@@ -103,11 +126,14 @@
 "Expenses:BaseLife:Transport:PublicTransportation": ## 公共交通
   - "公交"
   - "北京一卡通"
+  - "北京轨道交通路网管理有限公司"
   - "火车票"
   - "哈啰出行"
+  - "松果出行"
 "Expenses:BaseLife:Transport:Car:Parking": ## 停车费
   - "停车费"
   - "ETCP停车"
+  - "速停车"
 "Expenses:BaseLife:Transport:Car:Fueling": ## 加油
   - "车辆加油"
   - "中国石化"
@@ -124,11 +150,13 @@
 "Expenses:BaseLife:BeautyAndHair":
   - "理发"
   - "造型"
+  - "美发店"
 
 # 升级消费 - 快递通讯
 "Expenses:UpgradeConsumption:Express": ## 快递
   - "魏玉营"
   - "顺丰速运"
+  - "丰巢科技"
 "Expenses:UpgradeConsumption:Newsletters": ## 通讯
   - "中国移动"
   - "中国联通"
@@ -158,6 +186,7 @@
 "Expenses:UpgradeConsumption:CloudProducts": ## 云产品
   - "域名"
   - "服务器"
+  - "阿里云"
 # 升级消费 - 投资型消费
 "Expenses:UpgradeConsumption:Investing": ## 投资
   - "投资"
@@ -177,15 +206,19 @@
 "Expenses:UpgradeConsumption:Entertain": ## 娱乐
   - "抓娃娃"
   - "摩摩哒"
+  - "乐摩吧"
   - "网易云音乐"
+  - "彩票"
 "Expenses:UpgradeConsumption:Entertain:Travel": ## 旅行
   - "门票"
+  - "商旅酒店"
 "Expenses:UpgradeConsumption:Entertain:Game": ## 游戏充值
   - "游戏充值"
   - "DNF点券"
   - "DNF黑钻"
   - "塞尔达"
   - "游戏机"
+  - "深圳市腾讯计算机系统有限公司"
 
 # 教育
 "Expenses:UpgradeConsumption:Education:Kindergarten": ## 幼儿园
@@ -200,6 +233,10 @@
   - "快方送药"
   - "美年美合门诊部"
   - "药房"
+  - "北京中医医院"
+  - "西柏坡救援中心"
+  - "首都医科大学附属北京天坛医院"
+  - "安海军"
 
 # 保险
 "Expenses:UpgradeConsumption:Insurance":
