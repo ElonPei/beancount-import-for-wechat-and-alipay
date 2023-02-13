@@ -18,12 +18,13 @@ def beans_to_file(file, beans):
         content = content + '\t; change_rule: ' + str(bean.log_change_rule) + '\n'
         content = content + '\t; new: ' + str(bean.log_new_trace) + '\n'
 
+        # id
+        content = content + '\tid: "' + str(bean.id) + '"\n'
+        content = content + '\tremark: "' + str(bean.remark) + '"\n'
+
         for item in bean.items:
             content = content + '\t' + (item.account if item.account else 'Assets:Unknown') + (' ' + str(item.amount) if item.amount else '') + (' ' + item.currency if item.amount else '')
             content = content + ('\t;' + item.account_rule if item.account_rule else '') + '\n'
-
-        # id
-        content = content + '\tid: "' + str(bean.id) + '"\n'
 
         content = content + '\n'
     with open(file, 'w+') as f:

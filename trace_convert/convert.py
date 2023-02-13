@@ -143,7 +143,6 @@ def convert_account(beans):
 
 def row_to_dict(row):
     return {
-        "id": row['id'],
         "date": row['date'],
         "trace_type": row['trace_type'],
         "trace_obj": row['trace_obj'],
@@ -165,6 +164,7 @@ def convert(df):
         row, change_rule = convert_trace_change(row)
 
         id = row['id']
+        remark = row['remark']
         date = row['date']
         trace_type = row['trace_type']
         trace_obj = row['trace_obj']
@@ -176,6 +176,7 @@ def convert(df):
         source = row['source']
 
         print('id -> ', id)
+        print('id -> ', remark)
         print('交易时间 -> ', date)
         print('交易类型 -> ', trace_type)
         print('交易对方 -> ', trace_obj)
@@ -191,6 +192,7 @@ def convert(df):
 
         item = Item(account=pay_way, amount=amount_format(amount, row))
         bean = Bean(id=id,
+                    remark=remark,
                     date=datetime_format(date),
                     trace_type=trace_type,
                     location=trace_obj,

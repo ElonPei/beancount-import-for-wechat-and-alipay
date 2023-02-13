@@ -4,6 +4,7 @@ import hashlib
 import pandas as pd
 
 import import_manager.formater_csv as fmt
+from import_manager.beans_loader import load_remark_info
 from import_manager.trace_filter import delete_not_use_trace
 
 trade_path = '/Users/peiel/Desktop/123/'
@@ -23,6 +24,11 @@ def filter_df(df):
 
     # 拼接日期和金额并计算md5值
     df['id'] = df.apply(lambda x: hashlib.md5((str(x['date']) + x['amount']).encode()).hexdigest(), axis=1)
+
+    # 对原始文件中标记的内容进行处理
+    df_remark = load_remark_info()
+    df = pd.merge(df, df_remark, on='id', how='left')
+    df.fillna("", inplace=True)
 
     return df
 
