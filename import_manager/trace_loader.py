@@ -1,5 +1,6 @@
 import os
 
+import hashlib
 import pandas as pd
 
 import import_manager.formater_csv as fmt
@@ -19,6 +20,10 @@ def filter_df(df):
     df.drop_duplicates(
         subset=['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status'],
         keep='first', inplace=True)
+
+    # 拼接日期和金额并计算md5值
+    df['id'] = df.apply(lambda x: hashlib.md5((str(x['date']) + x['amount']).encode()).hexdigest(), axis=1)
+
     return df
 
 
