@@ -103,7 +103,7 @@ def trance_obj_to_account(trace_obj):
     return assets['未知']
 
 
-def match_expenses_account(location, desc):
+def match_expenses_account(location, desc, remark):
     """
     匹配支出账户
     """
@@ -113,9 +113,12 @@ def match_expenses_account(location, desc):
         return expenses[location], location + '->' + expenses[location]
     if desc in expenses:
         return expenses[desc], desc + '->' + expenses[desc]
+    if remark in expenses:
+        return expenses[remark], remark + '->' + expenses[remark]
+
     # 模糊匹配
     for text, account in expenses.items():
-        if text in location or text in desc:
+        if text in location or text in desc or text in remark:
             return account, text + '->' + account
     return expenses['未知'], None
 
@@ -125,7 +128,7 @@ def convert_account(beans):
         item = bean.items[0]
         if bean.income_and_expenses == '支出':
             # 使用 location desc 匹配来确定支出的类型
-            item.account, item.account_rule = match_expenses_account(bean.location, bean.desc)
+            item.account, item.account_rule = match_expenses_account(bean.location, bean.desc, bean.remark)
             # 使用 pay_way 匹配付款账户
             bean.items.append(Item(account=pay_way_to_account(bean.pay_way)))
         if bean.income_and_expenses == '收入':
@@ -165,6 +168,7 @@ def convert(df):
 
         id = row['id']
         remark = row['remark']
+        tags = row['tags']
         date = row['date']
         trace_type = row['trace_type']
         trace_obj = row['trace_obj']
@@ -176,7 +180,8 @@ def convert(df):
         source = row['source']
 
         print('id -> ', id)
-        print('id -> ', remark)
+        print('remark -> ', remark)
+        print('tags -> ', tags)
         print('交易时间 -> ', date)
         print('交易类型 -> ', trace_type)
         print('交易对方 -> ', trace_obj)
@@ -193,6 +198,7 @@ def convert(df):
         item = Item(account=pay_way, amount=amount_format(amount, row))
         bean = Bean(id=id,
                     remark=remark,
+                    tags=tags,
                     date=datetime_format(date),
                     trace_type=trace_type,
                     location=trace_obj,

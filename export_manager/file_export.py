@@ -10,7 +10,7 @@ def beans_to_file(file, beans):
     for bean in beans:
         print('>>', i)
         i = i + 1
-        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"' + '\t; ' + bean.trace_type
+        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"' + (" " + bean.tags if bean.tags and bean.tags != "" else "")
         content = content + title + '\n'
 
         # 注释
