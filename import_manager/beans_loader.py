@@ -24,6 +24,7 @@ def extract_tags(transaction_line):
 
 def load_remark_info():
     lines = []
+    # todo 读取所有导出的文件
     for f in glob.glob(os.path.join(bean_path, 'wechat.bean')):
         with open(f, "r") as file:
             lines = file.readlines()
@@ -41,7 +42,7 @@ def load_remark_info():
         "remark": remark_list,
         "tags": tags_list,
     })
-    df = df[df['remark'] != ""]
+    df = df[(df['remark'].notnull()) & (df['remark'] != '') | (df['tags'].notnull()) & (df['tags'] != '')]
     return df
 
 

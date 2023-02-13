@@ -109,16 +109,16 @@ def match_expenses_account(location, desc, remark):
     """
     expenses = AccountConf.expenses
     # 绝对匹配
+    if remark in expenses:
+        return expenses[remark], remark + '->' + expenses[remark]
     if location in expenses:
         return expenses[location], location + '->' + expenses[location]
     if desc in expenses:
         return expenses[desc], desc + '->' + expenses[desc]
-    if remark in expenses:
-        return expenses[remark], remark + '->' + expenses[remark]
 
     # 模糊匹配
     for text, account in expenses.items():
-        if text in location or text in desc or text in remark:
+        if text in remark or text in location or text in desc:
             return account, text + '->' + account
     return expenses['未知'], None
 
