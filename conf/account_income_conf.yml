@@ -1,9 +1,9 @@
 "Income:Unknown":
   - "未知"
-"Income:Alipay:YuEBao":
+"Income:MoneyFund:Alipay:YuEBao":
   - "余额宝"
   - "博时基金管理有限公司"
-"Income:Alipay:YuLiBao":
+"Income:MoneyFund:Alipay:YuLiBao":
   - "浙江网商银行股份有限公司"
 "Income:TransferIn":
   - "转账"
