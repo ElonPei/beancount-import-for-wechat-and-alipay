@@ -1,5 +1,3 @@
-from export_manager.file_export import beans_to_file
-from import_manager.trace_loader import load_wechat_trace, load_alipay_trace
 from model.bean import Bean, Item
 from trace_convert.trace_account_conf import AccountConf
 
@@ -212,17 +210,3 @@ def convert(df):
                     log_new_trace=new_row)
         beans.append(bean)
     return convert_account(beans)
-
-
-if __name__ == '__main__':
-    wechat_df = load_wechat_trace()
-    wechat_beans = convert(wechat_df)
-    print(">>>>>> 1111111111111111111")
-    beans_to_file(file=content_path + 'wechat.bean', beans=wechat_beans)
-    print(">>>>>> 2222222222222222222")
-
-    alipay_df = load_alipay_trace()
-    alipay_beans = convert(alipay_df)
-    print(">>>>>> 3333333333333333333")
-    beans_to_file(file=content_path + 'alipay.bean', beans=alipay_beans)
-    print(">>>>>> 4444444444444444444")

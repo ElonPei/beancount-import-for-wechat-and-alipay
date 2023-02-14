@@ -65,6 +65,12 @@ def load_alipay_trace():
     return df
 
 
+def load_all_trace():
+    df = pd.concat([load_wechat_trace(), load_alipay_trace()])
+    df = df.sort_values(by='date')
+    return df
+
+
 if __name__ == '__main__':
     wechat_df = load_wechat_trace()
     print(wechat_df.head())
