@@ -160,6 +160,7 @@
   - "停车费"
   - "ETCP停车"
   - "速停车"
+  - "石家庄市城投资产管理有限公司"
 "Expenses:BaseLife:Transport:Car:Washing": ## 洗车
   - "洗车"
   - "爱车之家"
@@ -174,7 +175,7 @@
   - "马自达"
 "Expenses:BaseLife:Transport:Car:Repair": ## 维修
   - "车辆维修"
-  - "卢敏" # 50块钱补胎
+  - "补胎"
 "Expenses:BaseLife:Transport:Taxi": ## 打车
   - "滴滴出行"
 # 基本生活保障 - 美容美发
@@ -223,22 +224,6 @@
   - "阿里云"
   - "sms-activate.org"
   - "Star Horizon Corporation"
-# 升级消费 - 投资型消费
-"Expenses:UpgradeConsumption:Investing": ## 投资
-  - "投资"
-
-# 人情往来
-"Expenses:UpgradeConsumption:Favors:Relative": ## 亲戚
-  - "亲戚"
-"Expenses:UpgradeConsumption:Favors:Parent": ## 长辈
-  - "长辈"
-"Expenses:UpgradeConsumption:Favors:Siblings": ## 兄弟姐妹
-  - "哥哥"
-  - "妹妹"
-"Expenses:UpgradeConsumption:Favors:Donation": ## 捐赠
-  - "捐款"
-
-# 娱乐
 "Expenses:UpgradeConsumption:Entertain": ## 娱乐
   - "抓娃娃"
   - "布艺手工坊"
@@ -246,29 +231,48 @@
   - "乐摩吧"
   - "网易云音乐"
   - "彩票"
-"Expenses:UpgradeConsumption:Entertain:Travel": ## 旅行
-  - "门票"
-  - "木兰精选酒店"
-  - "游船租赁"
-  - "旅游"
-  - "博物馆"
-  - "西安城墙"
-"Expenses:UpgradeConsumption:Entertain:Game": ## 游戏充值
+"Expenses:UpgradeConsumption:Game": ## 游戏充值
   - "游戏充值"
   - "DNF点券"
   - "DNF黑钻"
   - "塞尔达"
   - "游戏机"
   - "深圳市腾讯计算机系统有限公司"
+# 升级消费 - 投资型消费
+"Expenses:UpgradeConsumption:Investing": ## 投资
+  - "投资"
+
+# 人情往来
+"Expenses:Favors:Relative": ## 亲戚
+  - "亲戚"
+"Expenses:Favors:Parent": ## 长辈
+  - "长辈"
+  - "卢爹娘"
+"Expenses:Favors:Siblings": ## 兄弟姐妹
+  - "哥哥"
+  - "妹妹"
+"Expenses:Favors:Donation": ## 捐赠
+  - "捐款"
+
+# 旅游
+"Expenses:Trip": ## 酒店
+  - "旅游"
+"Expenses:Trip:Hotel": ## 酒店
+  - "酒店"
+"Expenses:Trip:Ticket": ## 票
+  - "门票"
+  - "游船租赁"
+  - "博物馆"
+  - "西安城墙"
 
 # 教育
-"Expenses:UpgradeConsumption:Education:Kindergarten": ## 幼儿园
+"Expenses:Education:Kindergarten": ## 幼儿园
   - "幼儿园"
-"Expenses:UpgradeConsumption:Education:Book": ## 书籍
+"Expenses:Education:Book": ## 书籍
   - "书籍"
 
 # 医疗
-"Expenses:UpgradeConsumption:Medical":
+"Expenses:Medical":
   - "医疗"
   - "叮当快药"
   - "快方送药"
@@ -283,5 +287,5 @@
   - "疫苗"
 
 # 保险
-"Expenses:UpgradeConsumption:Insurance":
+"Expenses:Insurance":
   - "保险"
