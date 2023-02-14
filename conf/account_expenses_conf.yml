@@ -18,6 +18,8 @@
   - "羊汤"
   - "拉面"
   - "果多美"
+  - "百果园"
+  - "链果"
   - "麦当劳"
   - "肯德基"
   - "必胜客"
@@ -87,6 +89,16 @@
   - "粉巷"
   - "绿豆"
   - "柿子饼"
+  - "五香鸡"
+  - "太二"
+  - "热干面"
+  - "醉仙鸭"
+  - "红烧肉"
+  - "土豆粉"
+  - "俏江南"
+  - "新辣道"
+  - "鱼你在一起"
+  - "早点"
   - "商户_崔建民"
 
   - "卢艳芳" # 水果店
@@ -99,6 +111,8 @@
   - "张亮"
   - "沈婷"
   - "张晟"
+  - "朱鹏帛"
+  - "李钦举"
   - "商户_李通"
 
 "Expenses:BaseLife:Food:SuperMarket": ## 超市
@@ -114,6 +128,7 @@
   - "华隆商店"
   - "全时生活"
   - "名创优品"
+  - "柒一拾壹"
   - "7-ELEVEn"
   - "汾酒竹叶青"
   - "无印良品"
@@ -122,9 +137,12 @@
   - "京东到家"
   - "高和便利"
   - "如店优选"
+  - "文具店"
+  - "日用品店"
 "Expenses:BaseLife:Food:Coffee": ## 咖啡
   - "瑞幸咖啡"
   - "luckin coffee"
+  - "星巴克"
 "Expenses:BaseLife:Food:Snack": ## 零食
   - "零食"
   - "冰淇淋"
@@ -132,11 +150,19 @@
   - "茶百道"
   - "益禾堂"
   - "蜜雪冰城"
+  - "饮品店"
+  - "果之满满"
 # 基本生活保障 - 住房
 "Expenses:BaseLife:House":
   - "宜家"
   - "窗帘"
   - "锅盖"
+  - "空调扇"
+  - "冰箱"
+  - "墙纸"
+  - "厨房"
+  - "双人床"
+  - "盆栽"
 "Expenses:BaseLife:House:Rent": ## 房租
   - "房租"
 "Expenses:BaseLife:House:Property": ## 物业
@@ -148,6 +174,7 @@
   - "物业费"
 "Expenses:BaseLife:House:Broadband": ## 宽带费用
   - "宽带费用"
+  - "宽带续费"
 # 基本生活保障 - 交通
 "Expenses:BaseLife:Transport:PublicTransportation": ## 公共交通
   - "公交"
@@ -156,6 +183,8 @@
   - "火车票"
   - "哈啰出行"
   - "松果出行"
+  - "上海迅途票务代理有限公司"
+  - "汽车票"
 "Expenses:BaseLife:Transport:Car:Parking": ## 停车费
   - "停车费"
   - "ETCP停车"
@@ -176,13 +205,18 @@
 "Expenses:BaseLife:Transport:Car:Repair": ## 维修
   - "车辆维修"
   - "补胎"
+"Expenses:BaseLife:Transport:Car:Fine": ## 罚款
+  - "河北省公安厅交通警察总队"
+  - "北京市交管局"
 "Expenses:BaseLife:Transport:Taxi": ## 打车
   - "滴滴出行"
+  - "高德打车"
 # 基本生活保障 - 美容美发
 "Expenses:BaseLife:BeautyAndHair":
   - "理发"
   - "造型"
   - "美发店"
+  - "美容美发"
   - "曹文"
 
 # 升级消费 - 快递通讯
@@ -197,16 +231,29 @@
   - "北京联通"
   - "河北移动"
   - "河北联通"
+  - "全国联通"
+  - "全国移动"
+  - "手机话费"
+  - "河北电信"
 
 # 升级消费 - 衣服鞋帽
 "Expenses:UpgradeConsumption:Cloth": ## 衣服
   - "温德萨洗衣液"
   - "上衣"
+  - "袜子"
+  - "裤子"
+  - "鞋子"
+  - "鞋垫"
+  - "短裤"
+  - "裤子"
   - "优衣库"
   - "耐克"
+  - "阿迪达斯"
   - "李宁"
   - "童装"
-  - "河北北国奥特莱斯商城有限公司"
+  - "内衣"
+  - "海澜之家"
+  - "河北才子男装"
 # 升级消费 - 化妆品
 "Expenses:UpgradeConsumption:Cosmetics": ## 化妆品
   - "化妆品"
@@ -216,12 +263,16 @@
   - "电脑"
   - "键盘"
   - "App Store"
+  - "applewatch"
   - "百度网盘"
+  - "触摸屏"
+  - "手机"
 # 升级消费 - 云产品
 "Expenses:UpgradeConsumption:CloudProducts": ## 云产品
   - "域名"
   - "服务器"
   - "阿里云"
+  - "腾讯云"
   - "sms-activate.org"
   - "Star Horizon Corporation"
 "Expenses:UpgradeConsumption:Entertain": ## 娱乐
@@ -231,13 +282,21 @@
   - "乐摩吧"
   - "网易云音乐"
   - "彩票"
+  - "微博会员"
+  - "上海宽娱" # 看电影
+  - "娱乐活动中心"
+  - "游乐园"
 "Expenses:UpgradeConsumption:Game": ## 游戏充值
   - "游戏充值"
+  - "地下城与勇士"
   - "DNF点券"
   - "DNF黑钻"
   - "塞尔达"
   - "游戏机"
   - "深圳市腾讯计算机系统有限公司"
+  - "cf穿越火线"
+  - "跑跑卡丁车"
+  - "游戏交易网"
 # 升级消费 - 投资型消费
 "Expenses:UpgradeConsumption:Investing": ## 投资
   - "投资"
@@ -253,6 +312,7 @@
   - "妹妹"
 "Expenses:Favors:Donation": ## 捐赠
   - "捐款"
+  - "北京新阳光慈善基金会"
 
 # 旅游
 "Expenses:Trip": ## 酒店
@@ -285,6 +345,10 @@
   - "北京京海康佰馨医药有限责任公司"
   - "医药有限公司"
   - "疫苗"
+  - "北京市医院管理中心"
+  - "核酸检测"
+  - "新冠状检测"
+  - "平山县中医院"
 
 # 保险
 "Expenses:Insurance":
