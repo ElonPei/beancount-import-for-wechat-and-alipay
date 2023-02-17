@@ -1,5 +1,5 @@
 from model.bean import Bean, Item
-from trace_convert.trace_account_conf import AccountConf
+from trace_processor.trace_account_conf import AccountConf
 
 content_path = '/Users/peiel/PycharmProjects/beancount-import-for-wechat-and-alipay/out/'
 

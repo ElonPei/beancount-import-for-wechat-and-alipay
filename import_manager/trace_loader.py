@@ -95,7 +95,6 @@ def load_all_trace():
 
 
 if __name__ == '__main__':
-    wechat_df = load_wechat_trace()
-    print(wechat_df.head())
-    alipay_df = load_alipay_trace()
-    print(alipay_df.head())
+    all_df = load_all_trace()
+    print(len(all_df))
+    print(all_df.head())
