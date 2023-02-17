@@ -35,7 +35,11 @@ def filter_df(df):
 
 def format_amount(df):
     df['amount'] = df['amount'].str.replace("¥", '').astype(float)
-    df['amount']=df['amount'].apply(lambda x:round(x,2))
+
+    # 下列两种方式都没有生效，后续探究
+    # df['amount']=df['amount'].apply(lambda x:round(x,2))
+    # df['amount'] = round(df['amount'], 2)
+
     return df
 
 
