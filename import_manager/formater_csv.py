@@ -19,7 +19,7 @@ def format_alipay_to_list(path):
     :return:
     """
     rows = read_csv_to_list(path, encoding='gbk')
-    if rows and any('支付宝（中国）网络技术有限公司' in item for item in rows[1]):
+    if rows and any('支付宝（中国）网络技术有限公司' in item for item in rows[0]):
         rows = delete_rows(rows, 0, 0)
         rows = rows[:-21]
     if rows and any('导出信息' in item for item in rows[1]):

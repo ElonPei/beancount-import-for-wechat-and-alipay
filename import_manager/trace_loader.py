@@ -55,8 +55,16 @@ def load_alipay_trace():
         if 'alipay' not in f:
             continue
         inner_df = pd.DataFrame(fmt.format_alipay_to_list(trade_path + f))
+
+        # 把第一行当做表头并删除第一行
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
+
+        # 如果是新版格式的导出，删除最后一列备注
+        if inner_df.columns[0].strip() == '交易时间':
+            # 使用 .drop() 方法删除最后一列
+            inner_df.drop(inner_df.columns[-1], axis=1, inplace=True)
+
         df = pd.concat([df, inner_df])
     if df.columns[0].strip() == '交易时间':
         df = df.iloc[:, [0, 1, 2, 4, 5, 6, 7, 8]]
