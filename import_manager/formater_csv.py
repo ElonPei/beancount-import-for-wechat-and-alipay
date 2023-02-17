@@ -19,8 +19,11 @@ def format_alipay_to_list(path):
     :return:
     """
     rows = read_csv_to_list(path, encoding='gbk')
-    rows = delete_rows(rows, 0, 0)
-    rows = rows[:-21]
+    if rows and any('支付宝（中国）网络技术有限公司' in item for item in rows[1]):
+        rows = delete_rows(rows, 0, 0)
+        rows = rows[:-21]
+    if rows and any('导出信息' in item for item in rows[1]):
+        rows = delete_rows(rows, 0, 23)
     return rows
 
 
@@ -41,3 +44,8 @@ def delete_rows(content_rows, start_idx, end_idx):
         if idx < start_idx or idx > end_idx:
             result_rows.append(row)
     return result_rows
+
+
+if __name__ == '__main__':
+    print((format_alipay_to_list("/Users/peiel/Desktop/alipay_record_20230215_174317.csv")))
+
