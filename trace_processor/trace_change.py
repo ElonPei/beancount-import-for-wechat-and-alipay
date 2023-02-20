@@ -1,3 +1,5 @@
+import os
+
 from import_manager.trace_loader import load_all_trace
 from trace_processor.trace_account_conf import AccountConf
 
@@ -37,3 +39,4 @@ if __name__ == '__main__':
     print(all_df.head())
     print(all_df.columns)
     all_df.to_csv('example.csv', index=False)
+    os.system('open example.csv')
