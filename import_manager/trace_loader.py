@@ -10,12 +10,7 @@ from import_manager.trace_filter import delete_not_use_trace
 trade_path = '/Users/peiel/Desktop/123/'
 
 
-def sort_by_trace_time(df):
-    return df.sort_values('date')
-
-
 def filter_df(df):
-    df = sort_by_trace_time(df)
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df = delete_not_use_trace(df)
     df.drop_duplicates(

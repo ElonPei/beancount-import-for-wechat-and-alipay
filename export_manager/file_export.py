@@ -28,22 +28,18 @@ def beans_to_file(file, beans):
     :return:
     """
     content = ''
-    i = 1
     for bean in beans:
-        print('>>', i)
-        i = i + 1
-        title = bean.date + ' * "' + bean.location + '" "' + bean.desc + '"' + (
+        title = bean.date + ' * "' + bean.trace_obj + '" "' + bean.desc + '"' + (
             " " + bean.tags if bean.tags and bean.tags != "" else "")
         content = content + title + '\n'
 
         # 注释
-        # content = content + '\t; org: ' + str(bean.log_org_trace) + '\n'
-        content = content + '\t; change_rule: ' + str(bean.trace_change_rule) + '\n'
-        # content = content + '\t; new: ' + str(bean.log_new_trace) + '\n'
-
-        # id
         content = content + '\tid: "' + str(bean.id) + '"\n'
         content = content + '\tremark: "' + str(bean.remark) + '"\n'
+        content = content + '\tstatus: "' + str(bean.status) + '"\n'
+        content = content + '\torder_no: "' + str(bean.order_no) + '"\n'
+        content = content + '\tsource: "' + str(bean.source) + '"\n'
+        content = content + '\ttrace_change_rule: "' + str(bean.trace_change_rule) + '"\n'
 
         for item in bean.items:
             content = content + '\t' + (item.account if item.account else 'Assets:Unknown') + (

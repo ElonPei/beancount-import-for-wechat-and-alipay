@@ -37,7 +37,8 @@ def load_remark_info():
     for f in find_all_auto_bean_file():
         with open(f, "r") as file:
             lines = lines + file.readlines()
-    lines_list = [line.strip() for line in lines if line.startswith("\tid:") or line.startswith("\tremark:") or starts_with_date(line)]
+    lines_list = [line.strip() for line in lines if
+                  line.startswith("\tid:") or line.startswith("\tremark:") or starts_with_date(line)]
     lines_list = [line.replace('\t', '') for line in lines_list]
     lines_list = [line.replace('\n', '') for line in lines_list]
 
@@ -51,6 +52,7 @@ def load_remark_info():
         "tags": tags_list,
     })
     df = df[(df['remark'].notnull()) & (df['remark'] != '') | (df['tags'].notnull()) & (df['tags'] != '')]
+    df.drop_duplicates(subset=['id'], keep='first', inplace=True)
     return df
 
 
