@@ -31,8 +31,8 @@ def filter_df(df):
     df.fillna("", inplace=True)
 
     # 对带双引号的数据进行替换处理
-    df['trace_obj'] = df['trace_obj'].replace("\"", "'")
-    df['goods'] = df['goods'].replace("\"", "'")
+    df['trace_obj'] = df['trace_obj'].str.replace("\"", "'")
+    df['goods'] = df['goods'].str.replace("\"", "'")
 
     return df
 
