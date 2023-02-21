@@ -1,8 +1,6 @@
-import os
 import re
 
-from import_manager.trace_loader import load_all_trace
-from trace_processor.trace_change import trace_change
+import pandas as pd
 
 
 def get_amount_by_str(s):
@@ -35,7 +33,7 @@ def wechat_refund(df):
             new_row['amount'] = new_row['amount'] * -1
         elif new_row['status'].startswith('已退款'):
             new_row['amount'] = get_amount_by_str(new_row['status']) * -1
-        df.loc[len(df.index)] = new_row
+        df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
     return df
 
 
@@ -55,4 +53,3 @@ def refund(df):
     df = wechat_refund(df)
     df = alipay_refund(df)
     return df
-
