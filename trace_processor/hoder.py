@@ -13,10 +13,10 @@ def holder_processor():
     all_df = amount(all_df)
     all_df = refund(all_df)
     all_df = account_match(all_df)
-    all_df.to_csv('example.csv', index=False)
-    os.system('open example.csv')
     return all_df
 
 
 if __name__ == '__main__':
-    holder_processor()
+    df = holder_processor()
+    df.to_csv('example.csv', index=False)
+    os.system('open example.csv')

@@ -37,9 +37,9 @@ def beans_to_file(file, beans):
         content = content + title + '\n'
 
         # 注释
-        content = content + '\t; org: ' + str(bean.log_org_trace) + '\n'
-        content = content + '\t; change_rule: ' + str(bean.log_change_rule) + '\n'
-        content = content + '\t; new: ' + str(bean.log_new_trace) + '\n'
+        # content = content + '\t; org: ' + str(bean.log_org_trace) + '\n'
+        content = content + '\t; change_rule: ' + str(bean.trace_change_rule) + '\n'
+        # content = content + '\t; new: ' + str(bean.log_new_trace) + '\n'
 
         # id
         content = content + '\tid: "' + str(bean.id) + '"\n'
@@ -47,7 +47,7 @@ def beans_to_file(file, beans):
 
         for item in bean.items:
             content = content + '\t' + (item.account if item.account else 'Assets:Unknown') + (
-                ' ' + str(item.amount) if item.amount else '') + (' ' + item.currency if item.amount else '')
+                ' ' + str(item.amount) if item.amount or item.amount==0.0 else '') + (' ' + item.currency if item.amount or item.amount==0.0 else '')
             content = content + ('\t;' + item.account_rule if item.account_rule else '') + '\n'
 
         content = content + '\n'

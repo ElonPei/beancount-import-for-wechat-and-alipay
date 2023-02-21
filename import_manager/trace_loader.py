@@ -30,6 +30,10 @@ def filter_df(df):
     df = pd.merge(df, df_remark, on='id', how='left')
     df.fillna("", inplace=True)
 
+    # 对带双引号的数据进行替换处理
+    df['trace_obj'] = df['trace_obj'].replace("\"", "'")
+    df['goods'] = df['goods'].replace("\"", "'")
+
     return df
 
 
