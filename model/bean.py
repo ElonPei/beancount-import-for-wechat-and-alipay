@@ -1,10 +1,12 @@
 class Bean:
-    def __init__(self, id, remark, tags, date, trace_type, trace_obj, desc, items, income_and_expenses, pay_way,
+    def __init__(self, id, remark, tags, date, datetime, trace_type, trace_obj, desc, items, income_and_expenses,
+                 pay_way,
                  status, order_no, source, trace_change_rule):
         self.id = id
         self.remark = remark
         self.tags = tags
         self.date = date
+        self.datetime = datetime
         self.trace_type = trace_type
         self.trace_obj = trace_obj
         self.desc = desc
@@ -14,7 +16,6 @@ class Bean:
         self.order_no = order_no
         self.source = source
         self.trace_change_rule = trace_change_rule
-
 
         self.items = items
 

@@ -30,14 +30,23 @@ def account_match(df):
     expenses = AccountConf.expenses
 
     def expense_match(row):
+        remark = row['remark']
+        trace_obj = row['trace_obj']
+        goods = row['goods']
+
+        if remark in expenses:
+            return expenses[remark]
         for key in expenses:
-            if key in row['trace_obj'] or key in row['goods']:
+            if key in remark or key in trace_obj or key in goods:
                 return expenses[key]
         return expenses['未知']
 
     def expense_match_rule(row):
+        remark = row['remark']
+        if remark in expenses:
+            return remark + ' -> ' + expenses[remark]
         for key in expenses:
-            if key in row['trace_obj'] or key in row['goods']:
+            if key in remark or key in row['trace_obj'] or key in row['goods']:
                 return key + ' -> ' + expenses[key]
         return ''
 

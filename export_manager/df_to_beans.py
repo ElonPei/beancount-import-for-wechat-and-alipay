@@ -48,6 +48,7 @@ def df_to_beans(df):
                     remark=remark,
                     tags=tags,
                     date=datetime_format(date),
+                    datetime=date,
                     trace_type=trace_type,
                     trace_obj=trace_obj,
                     desc=goods,
