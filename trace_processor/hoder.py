@@ -8,15 +8,16 @@ from trace_processor.trace_change import trace_change
 
 
 def holder_processor():
-    all_df = load_all_trace()
-    all_df = trace_change(all_df)
-    all_df = amount(all_df)
-    all_df = refund(all_df)
-    all_df = account_match(all_df)
-    return all_df
+    df = load_all_trace()
+    df = trace_change(df)
+    df = amount(df)
+    df = refund(df)
+    df = account_match(df)
+    df = df.sort_values(by='date')
+    return df
 
 
 if __name__ == '__main__':
-    df = holder_processor()
-    df.to_csv('example.csv', index=False)
+    all_df = holder_processor()
+    all_df.to_csv('example.csv', index=False)
     os.system('open example.csv')
