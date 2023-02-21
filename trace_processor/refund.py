@@ -1,3 +1,4 @@
+import hashlib
 import re
 
 import pandas as pd
@@ -33,6 +34,8 @@ def wechat_refund(df):
             new_row['amount'] = new_row['amount'] * -1
         elif new_row['status'].startswith('已退款'):
             new_row['amount'] = get_amount_by_str(new_row['status']) * -1
+        # 拼接日期和金额并计算md5值
+        new_row['id'] = hashlib.md5((str(new_row['date']) + str(new_row['amount'])).encode()).hexdigest()
         df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
     return df
 
