@@ -26,15 +26,15 @@ def holder_processor():
     t4 = time.time()
     print('amount', len(df), t4 - t3)
 
-    # 退款处理
-    df = refund(df)
-    t5 = time.time()
-    print('refund', len(df), t5 - t4)
-
     # 代付处理
     df = payment_on_behalf(df)
+    t5 = time.time()
+    print('payment_on_behalf', len(df), t5 - t4)
+
+    # 退款处理
+    df = refund(df)
     t6 = time.time()
-    print('payment_on_behalf', len(df), t6 - t5)
+    print('refund', len(df), t6 - t5)
 
     # 账户匹配
     df = account_match(df)
