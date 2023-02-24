@@ -5,20 +5,31 @@ def account_match(df):
     income_conditions = df['income_and_expenses'] == '收入'
     expenses_conditions = df['income_and_expenses'] == '支出'
 
+    income = AccountConf.income
+    expenses = AccountConf.expenses
+    assets = AccountConf.assets
+    liabilities = AccountConf.liabilities
+
     # 目标账户的处理
     df['desc_account'] = ''
     df['desc_account_rule'] = ''
     ## 收入的情况
-    income = AccountConf.income
-
     def income_match(row):
         trace_obj = row['trace_obj']
         remark = row['remark']
+
+        # 如果是借款的情况
+        if '借款' in remark:
+            for liability in liabilities:
+                if liability in remark:
+                    return liabilities[liability]
+
         if remark in income:
             return income[remark]
         for key in income:
             if key in trace_obj:
                 return income[key]
+
         return income['未知']
 
     def income_match_rule(row):
@@ -31,18 +42,23 @@ def account_match(df):
     df.loc[income_conditions, 'desc_account_rule'] = df.loc[income_conditions].apply(income_match_rule, axis=1)
 
     ## 支出的情况
-    expenses = AccountConf.expenses
 
     def expense_match(row):
         remark = row['remark']
         trace_obj = row['trace_obj']
         goods = row['goods']
+        # 如果是还款的情况
+        if '还款' in remark:
+            for liability in liabilities:
+                if liability in remark:
+                    return liabilities[liability]
 
         if remark in expenses:
             return expenses[remark]
         for key in expenses:
             if key in remark or key in trace_obj or key in goods:
                 return expenses[key]
+
         return expenses['未知']
 
     def expense_match_rule(row):
@@ -61,8 +77,6 @@ def account_match(df):
     df['pre_account'] = ''
 
     def pay_way_match(row):
-        assets = AccountConf.assets
-        liabilities = AccountConf.liabilities
 
         pay_way = row['pay_way']
         # 兼容招行交易时的描述

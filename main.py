@@ -18,9 +18,9 @@ def read_beancount_account(account):
 
 if __name__ == '__main__':
     # 交易流水
-    # df = holder_processor()
-    # beans = df_to_beans(df)
-    # export_beans_to_workspace(content_path, beans)
+    df = holder_processor()
+    beans = df_to_beans(df)
+    export_beans_to_workspace(content_path, beans)
 
     # 账户配置
     org_assets_list = read_beancount_account("assets")
