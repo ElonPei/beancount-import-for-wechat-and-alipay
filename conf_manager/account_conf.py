@@ -34,7 +34,7 @@ def get_equity_account_list():
     return list(AccountConf.dict_equity.keys())
 
 
-def get_expense_account_list():
+def get_expenses_account_list():
     return list(AccountConf.dict_expenses.keys())
 
 

@@ -35,6 +35,8 @@ def extract_tags(transaction_line):
 def load_remark_info():
     lines = []
     for f in find_all_auto_bean_file():
+        if '/accounts/' in f:
+            continue
         with open(f, "r") as file:
             lines = lines + file.readlines()
     lines_list = [line.strip() for line in lines if
