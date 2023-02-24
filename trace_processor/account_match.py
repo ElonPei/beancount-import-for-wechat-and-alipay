@@ -12,8 +12,12 @@ def account_match(df):
     income = AccountConf.income
 
     def income_match(row):
+        trace_obj = row['trace_obj']
+        remark = row['remark']
+        if remark in income:
+            return income[remark]
         for key in income:
-            if key in row['trace_obj']:
+            if key in trace_obj:
                 return income[key]
         return income['未知']
 

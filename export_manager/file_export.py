@@ -29,7 +29,7 @@ def beans_to_file(file, beans):
     """
     content = ''
     for bean in beans:
-        title = bean.date + ' * "' + bean.trace_obj + '" "' + bean.desc + '"' + (
+        title = bean.date + ' * "' + (bean.remark if bean.remark else bean.trace_obj) + '" "' + bean.desc + '"' + (
             " " + bean.tags if bean.tags and bean.tags != "" else "")
         content = content + title + '\n'
 
@@ -37,6 +37,8 @@ def beans_to_file(file, beans):
         content = content + '\tid: "' + str(bean.id) + '"\n'
         content = content + '\tremark: "' + str(bean.remark) + '"\n'
         content = content + '\tdatetime: "' + str(bean.datetime) + '"\n'
+        content = content + '\ttrace_obj: "' + str(bean.trace_obj) + '"\n'
+        content = content + '\tdesc: "' + str(bean.desc) + '"\n'
         content = content + '\tstatus: "' + str(bean.status) + '"\n'
         content = content + '\tpay_way: "' + str(bean.pay_way) + '"\n'
         content = content + '\torder_no: "' + str(bean.order_no) + '"\n'
