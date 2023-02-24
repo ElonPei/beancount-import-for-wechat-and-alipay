@@ -1,4 +1,4 @@
-from trace_processor.trace_account_conf import AccountConf
+from conf_manager.account_conf import AccountConf
 
 
 def account_match(df):

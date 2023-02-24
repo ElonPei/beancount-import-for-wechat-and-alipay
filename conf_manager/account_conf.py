@@ -1,10 +1,6 @@
 import os
-import yaml
 
-
-def load_account_conf(conf_path):
-    with open(conf_path, "r") as file:
-        return yaml.safe_load(file)
+from conf_manager.util import load_account_conf
 
 
 def revert_to_map(input_dict):
@@ -17,7 +13,6 @@ def revert_to_map(input_dict):
 
 class AccountConf:
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    trace_change = load_account_conf('%s/../conf/trace_change_conf.yml' % dir_path)
 
     dict_assets = load_account_conf('%s/../conf/account_assets_conf.yml' % dir_path)
     assets = revert_to_map(dict_assets)
@@ -31,21 +26,29 @@ class AccountConf:
     liabilities = revert_to_map(dict_liabilities)
 
 
-def get_all_account_list():
-    account_list = []
-    account_list.extend(list(AccountConf.dict_assets.keys()))
-    account_list.extend(list(AccountConf.dict_equity.keys()))
-    account_list.extend(list(AccountConf.dict_expenses.keys()))
-    account_list.extend(list(AccountConf.dict_income.keys()))
-    account_list.extend(list(AccountConf.dict_liabilities.keys()))
-    return account_list
+def get_assets_account_list():
+    return list(AccountConf.dict_assets.keys())
+
+
+def get_equity_account_list():
+    return list(AccountConf.dict_equity.keys())
+
+
+def get_expense_account_list():
+    return list(AccountConf.dict_expenses.keys())
+
+
+def get_income_account_list():
+    return list(AccountConf.dict_income.keys())
+
+
+def get_liabilities_account_list():
+    return list(AccountConf.dict_liabilities.keys())
 
 
 if __name__ == '__main__':
-    print(AccountConf.trace_change)
     print(AccountConf.assets)
     print(AccountConf.equity)
     print(AccountConf.expenses)
     print(AccountConf.income)
     print(AccountConf.liabilities)
-    print(get_all_account_list())

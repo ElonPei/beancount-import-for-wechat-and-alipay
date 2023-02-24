@@ -1,7 +1,7 @@
 from export_manager.df_to_beans import df_to_beans
 from export_manager.file_export import accounts_to_file, export_beans_to_workspace
 from trace_processor.hoder import holder_processor
-from trace_processor.trace_account_conf import get_all_account_list
+
 
 content_path = '/Users/peiel/Library/Mobile Documents/com~apple~CloudDocs/Personal/财务/beancount'
 

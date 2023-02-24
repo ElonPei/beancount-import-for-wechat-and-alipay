@@ -1,7 +1,5 @@
-import os
-
-from import_manager.trace_loader import load_all_trace
-from trace_processor.trace_account_conf import AccountConf
+from conf_manager.account_conf import AccountConf
+from conf_manager.trace_change_conf import TraceChangeConf
 
 
 def match_condition(df, rule_list):
@@ -17,7 +15,7 @@ def match_condition(df, rule_list):
 
 
 def trace_change(df):
-    conf = AccountConf.trace_change
+    conf = TraceChangeConf.trace_change
     for rules, values in conf.items():
         rule_list = [s.strip() for s in rules.split('&')]
         value_list = [s.strip() for s in values.split(',')]
