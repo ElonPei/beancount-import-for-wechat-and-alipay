@@ -43,6 +43,7 @@ def beans_to_file(file, beans):
         content = content + '\tpay_way: "' + str(bean.pay_way) + '"\n'
         content = content + '\torder_no: "' + str(bean.order_no) + '"\n'
         content = content + '\tsource: "' + str(bean.source) + '"\n'
+        content = content + '\tbuddy: "' + str(bean.buddy) + '"\n'
         content = content + '\ttrace_change_rule: "' + str(bean.trace_change_rule) + '"\n'
 
         for item in bean.items:

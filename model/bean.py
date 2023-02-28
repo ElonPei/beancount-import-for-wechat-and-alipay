@@ -1,7 +1,7 @@
 class Bean:
     def __init__(self, id, remark, tags, date, datetime, trace_type, trace_obj, desc, items, income_and_expenses,
                  pay_way,
-                 status, order_no, source, trace_change_rule):
+                 status, order_no, source, buddy, trace_change_rule):
         self.id = id
         self.remark = remark
         self.tags = tags
@@ -15,6 +15,7 @@ class Bean:
         self.status = status
         self.order_no = order_no
         self.source = source
+        self.buddy = buddy
         self.trace_change_rule = trace_change_rule
 
         self.items = items

@@ -50,9 +50,10 @@ def load_wechat_trace():
         inner_df = pd.DataFrame(fmt.format_wechat_to_list(trade_path + f))
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
+        inner_df['buddy'] = 'ljy' if 'ljy' in f else 'peiel'
         df = pd.concat([df, inner_df])
-    df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]
-    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no']
+    df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1]]
+    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
     df['source'] = 'wechat'
     df = filter_df(df)
     df = format_amount(df)
@@ -74,16 +75,18 @@ def load_alipay_trace():
         if inner_df.columns[0].strip() == '交易时间':
             # 使用 .drop() 方法删除最后一列
             inner_df.drop(inner_df.columns[-1], axis=1, inplace=True)
+        inner_df['buddy'] = 'ljy' if 'ljy' in f else 'peiel'
 
         df = pd.concat([df, inner_df])
     if df.columns[0].strip() == '交易时间':
-        df = df.iloc[:, [0, 1, 2, 4, 5, 6, 7, 8, 9, 10]]
+        df = df.iloc[:, [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, -1]]
     if df.columns[0].strip() == '收/支':
-        df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6, 8, 9]]
-    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no']
+        df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6, 8, 9, -2]]
+    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
     df['source'] = 'alipay'
     df = filter_df(df)
     df = format_amount(df)
+
     return df
 
 
