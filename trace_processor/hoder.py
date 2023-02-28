@@ -7,6 +7,7 @@ from trace_processor.amount import amount
 from trace_processor.payment_on_behalf import payment_on_behalf
 from trace_processor.refund import refund
 from trace_processor.trace_change import trace_change
+from trace_processor.transfer import transfer
 
 
 def holder_processor():
@@ -35,6 +36,9 @@ def holder_processor():
     df = refund(df)
     t6 = time.time()
     print('refund', len(df), t6 - t5)
+
+    # 资金调拨标记
+    df = transfer(df)
 
     # 账户匹配
     df = account_match(df)
