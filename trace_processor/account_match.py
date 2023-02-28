@@ -4,7 +4,7 @@ from conf_manager.account_conf import AccountConf
 def account_match(df):
     income_conditions = df['income_and_expenses'] == '收入'
     expenses_conditions = df['income_and_expenses'] == '支出'
-    allocation_funds_conditions = df['is_allocation_funds'] == '1'
+    excluding_income_and_expenditure = (df['is_allocation_funds'] == '1') | (df['ignore'] == '1')
 
     income = AccountConf.income
     expenses = AccountConf.expenses
@@ -74,13 +74,13 @@ def account_match(df):
     df.loc[expenses_conditions, 'desc_account'] = df.loc[expenses_conditions].apply(expense_match, axis=1)
     df.loc[expenses_conditions, 'desc_account_rule'] = df.loc[expenses_conditions].apply(expense_match_rule, axis=1)
 
-    ## 资金调拨的情况
-    def allocation_funds_match(row):
+    ## 不计收支的情况
+    def excluding_income_and_expenditure_match(row):
         trace_obj = row['trace_obj']
         if trace_obj in assets:
             return assets[trace_obj]
         return assets['未知']
-    df.loc[allocation_funds_conditions, 'desc_account'] = df.loc[allocation_funds_conditions].apply(allocation_funds_match, axis=1)
+    df.loc[excluding_income_and_expenditure, 'desc_account'] = df.loc[excluding_income_and_expenditure].apply(excluding_income_and_expenditure_match, axis=1)
 
 
     # 当前账户的处理
@@ -102,7 +102,7 @@ def account_match(df):
     df.loc[income_conditions, 'pre_account'] = df.loc[income_conditions].apply(pay_way_match, axis=1)
     ## 支出的情况
     df.loc[expenses_conditions, 'pre_account'] = df.loc[expenses_conditions].apply(pay_way_match, axis=1)
-    ## 资金调拨的情况
-    df.loc[allocation_funds_conditions, 'pre_account'] = df.loc[allocation_funds_conditions].apply(pay_way_match, axis=1)
+    ## 不计收支的情况
+    df.loc[excluding_income_and_expenditure, 'pre_account'] = df.loc[excluding_income_and_expenditure].apply(pay_way_match, axis=1)
 
     return df
