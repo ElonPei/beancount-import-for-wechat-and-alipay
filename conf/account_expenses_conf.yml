@@ -107,6 +107,8 @@
   - "火锅"
   - "锅圈食汇"
   - "面条"
+  - "平山鸽佬汇饭店"
+  - "夜未央红旗店"
 
   - "卢艳芳" # 水果店
   - "果先生"
@@ -151,6 +153,7 @@
   - "康达小商品"
   - "烟酒"
   - "信誉楼百货"
+  - "36524"
 "Expenses:BaseLife:Food:Coffee": ## 咖啡
   - "瑞幸咖啡"
   - "luckin coffee"
@@ -224,6 +227,7 @@
 "Expenses:BaseLife:Transport:Taxi": ## 打车
   - "滴滴出行"
   - "高德打车"
+  - "孙卫普平山石家庄专业顺风车"
 # 基本生活保障 - 美容美发
 "Expenses:BaseLife:BeautyAndHair":
   - "理发"
