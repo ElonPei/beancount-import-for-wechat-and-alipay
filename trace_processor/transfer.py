@@ -13,7 +13,7 @@ def sign_allocation_of_funds(df):
     """
     for k, v in allocation_of_funds_conf.items():
         for item in v.split('|'):
-            df.loc[df[k] == item, 'is_allocation_funds'] = '1'
+            df.loc[(df[k] == item) & (df['remark'] == ''), 'is_allocation_funds'] = '1'
     return df
 
 
