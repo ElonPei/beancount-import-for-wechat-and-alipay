@@ -4,15 +4,13 @@ import hashlib
 import pandas as pd
 
 import import_manager.formater_csv as fmt
-from import_manager.beans_loader import load_remark_info
-from import_manager.trace_filter import delete_not_use_trace
+from import_manager.beans_loader import load_custom_info
 
 trade_path = '/Users/peiel/Desktop/123/'
 
 
 def filter_df(df):
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-    df = delete_not_use_trace(df)
     df.drop_duplicates(
         subset=['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status'],
         keep='first', inplace=True)
@@ -21,7 +19,7 @@ def filter_df(df):
     df['id'] = df.apply(lambda x: hashlib.md5((str(x['date']) + x['amount']).encode()).hexdigest(), axis=1)
 
     # 对原始文件中标记的内容进行处理
-    df_remark = load_remark_info()
+    df_remark = load_custom_info()
     df = pd.merge(df, df_remark, on='id', how='left')
     df.fillna("", inplace=True)
 
@@ -55,8 +53,6 @@ def load_wechat_trace():
     df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1]]
     df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
     df['source'] = 'wechat'
-    df = filter_df(df)
-    df = format_amount(df)
     return df
 
 
@@ -84,14 +80,15 @@ def load_alipay_trace():
         df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6, 8, 9, -2]]
     df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
     df['source'] = 'alipay'
-    df = filter_df(df)
-    df = format_amount(df)
-
     return df
 
 
 def load_all_trace():
     df = pd.concat([load_wechat_trace(), load_alipay_trace()])
+
+    df = filter_df(df)
+    df = format_amount(df)
+
     df = df.sort_values(by='date')
     return df
 
