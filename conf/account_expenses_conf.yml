@@ -109,6 +109,7 @@
   - "面条"
   - "平山鸽佬汇饭店"
   - "夜未央红旗店"
+  - "食品"
 
   - "卢艳芳" # 水果店
   - "果先生"
@@ -154,6 +155,7 @@
   - "烟酒"
   - "信誉楼百货"
   - "36524"
+  - "小商品批发"
 "Expenses:BaseLife:Food:Coffee": ## 咖啡
   - "瑞幸咖啡"
   - "luckin coffee"
@@ -275,6 +277,7 @@
 "Expenses:UpgradeConsumption:Cosmetics": ## 化妆品
   - "化妆品"
   - "屈臣氏"
+  - "中免日上"
 # 升级消费 - 电子产品
 "Expenses:UpgradeConsumption:ElectricalProducts": ## 电子产品
   - "电脑"
@@ -284,6 +287,7 @@
   - "百度网盘"
   - "触摸屏"
   - "手机"
+  - "贴膜"
 # 升级消费 - 云产品
 "Expenses:UpgradeConsumption:CloudProducts": ## 云产品
   - "域名"

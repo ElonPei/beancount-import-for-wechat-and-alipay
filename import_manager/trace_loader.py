@@ -8,6 +8,13 @@ from import_manager.beans_loader import load_custom_info
 
 trade_path = '/Users/peiel/Desktop/123/'
 
+wechat_header_pickers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+alipay_header_pickers = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10]
+alipay_header_pickers_v2 = [10, 7, 1, 3, 0, 5, 4, 6, 8, 9]
+
+df_common_columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status',
+                     'order_no', 'business_order_no']
+
 
 def filter_df(df):
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
@@ -39,11 +46,13 @@ def format_amount(df):
 
     return df
 
+
 def parse_owner(root):
     rep_root = root.replace(trade_path, '')
     if not rep_root:
         return 'default'
     return rep_root
+
 
 def load_wechat_trace():
     df = pd.DataFrame()
@@ -57,13 +66,13 @@ def load_wechat_trace():
         inner_df = pd.DataFrame(fmt.format_wechat_to_list(f))
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
-        inner_df['buddy'] = '卢娇艳' if 'ljy' in f else '裴二龙'
+
+        inner_df = inner_df.iloc[:, wechat_header_pickers]
+        inner_df.columns = df_common_columns
+        inner_df['owner'] = '卢娇艳' if 'ljy' in f else '裴二龙'
+        inner_df['source'] = f
+        inner_df['file_update_time'] = os.stat(f).st_mtime
         df = pd.concat([df, inner_df])
-    if df.empty:
-        return df
-    df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1]]
-    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
-    df['source'] = 'wechat'
     return df
 
 
@@ -85,17 +94,21 @@ def load_alipay_trace():
         if inner_df.columns[0].strip() == '交易时间':
             # 使用 .drop() 方法删除最后一列
             inner_df.drop(inner_df.columns[-1], axis=1, inplace=True)
-        inner_df['buddy'] = '卢娇艳' if 'ljy' in f else '裴二龙'
+
+        # 判断新旧版本来使用不同的头部
+        if inner_df.columns[0].strip() == '交易时间':
+            inner_df = inner_df.iloc[:, alipay_header_pickers]
+        if inner_df.columns[0].strip() == '收/支':
+            inner_df = inner_df.iloc[:, alipay_header_pickers_v2]
+
+        inner_df.columns = df_common_columns
+
+        inner_df['owner'] = '卢娇艳' if 'ljy' in f else '裴二龙'
+        inner_df['source'] = f
+        inner_df['file_update_time'] = os.stat(f).st_mtime
 
         df = pd.concat([df, inner_df])
-    if df.empty:
-        return df
-    if df.columns[0].strip() == '交易时间':
-        df = df.iloc[:, [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, -1]]
-    if df.columns[0].strip() == '收/支':
-        df = df.iloc[:, [10, 7, 1, 3, 0, 5, 4, 6, 8, 9, -2]]
-    df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
-    df['source'] = 'alipay'
+
     return df
 
 

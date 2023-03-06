@@ -22,7 +22,7 @@ def df_to_beans(df):
         status = row['status']
         order_no = row['order_no']
         source = row['source']
-        buddy = row['buddy']
+        owner = row['owner']
         desc_account_rule = row['desc_account_rule']
         trace_change_rule = row['trace_change_rule']
 
@@ -61,7 +61,7 @@ def df_to_beans(df):
                     status=status,
                     order_no=order_no,
                     source=source,
-                    buddy=buddy,
+                    owner=owner,
                     trace_change_rule=trace_change_rule,
                     )
         beans.append(bean)
