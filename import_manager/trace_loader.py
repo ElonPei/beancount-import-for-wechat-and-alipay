@@ -39,13 +39,22 @@ def format_amount(df):
 
     return df
 
+def parse_owner(root):
+    rep_root = root.replace(trade_path, '')
+    if not rep_root:
+        return 'default'
+    return rep_root
 
 def load_wechat_trace():
     df = pd.DataFrame()
-    for f in os.listdir(trade_path):
+    all_files = []
+    for root, _, files in os.walk(trade_path):
+        all_files.append([root + '/' + f for f in files if 'csv' in f])
+
+    for f in all_files:
         if '微信支付' not in f:
             continue
-        inner_df = pd.DataFrame(fmt.format_wechat_to_list(trade_path + f))
+        inner_df = pd.DataFrame(fmt.format_wechat_to_list(f))
         inner_df.columns = inner_df.iloc[0]
         inner_df = inner_df[1:]
         inner_df['buddy'] = '卢娇艳' if 'ljy' in f else '裴二龙'
@@ -60,10 +69,13 @@ def load_wechat_trace():
 
 def load_alipay_trace():
     df = pd.DataFrame()
-    for f in os.listdir(trade_path):
+    all_files = []
+    for root, _, files in os.walk(trade_path):
+        all_files = all_files + [root + '/' + f for f in files if 'csv' in f]
+    for f in all_files:
         if 'alipay' not in f:
             continue
-        inner_df = pd.DataFrame(fmt.format_alipay_to_list(trade_path + f))
+        inner_df = pd.DataFrame(fmt.format_alipay_to_list(f))
 
         # 把第一行当做表头并删除第一行
         inner_df.columns = inner_df.iloc[0]
