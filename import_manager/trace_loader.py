@@ -50,6 +50,8 @@ def load_wechat_trace():
         inner_df = inner_df[1:]
         inner_df['buddy'] = '卢娇艳' if 'ljy' in f else '裴二龙'
         df = pd.concat([df, inner_df])
+    if df.empty:
+        return df
     df = df.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1]]
     df.columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status', 'order_no', 'business_order_no', 'buddy']
     df['source'] = 'wechat'
@@ -74,6 +76,8 @@ def load_alipay_trace():
         inner_df['buddy'] = '卢娇艳' if 'ljy' in f else '裴二龙'
 
         df = pd.concat([df, inner_df])
+    if df.empty:
+        return df
     if df.columns[0].strip() == '交易时间':
         df = df.iloc[:, [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, -1]]
     if df.columns[0].strip() == '收/支':
@@ -85,6 +89,9 @@ def load_alipay_trace():
 
 def load_all_trace():
     df = pd.concat([load_wechat_trace(), load_alipay_trace()])
+
+    if df.empty:
+        return df
 
     df = filter_df(df)
     df = format_amount(df)

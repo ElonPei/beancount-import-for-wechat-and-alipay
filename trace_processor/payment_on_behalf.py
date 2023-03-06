@@ -17,6 +17,8 @@ def find_pob_pay_way(row, df):
 
 
 def payment_on_behalf(df):
+    if df.empty:
+        return df
     # 找到所有支付方代付的交易，把代付方的付款方式赋值到支付方上
     condition = (df['pay_way'].str.contains('亲情卡')) | (df['pay_way'].str.contains('亲属卡'))
     df.loc[condition, 'pay_way'] = df.loc[condition].apply(find_pob_pay_way, df=df, axis=1)

@@ -1,5 +1,7 @@
 
 def amount(df):
+    if df.empty:
+        return df
     # 收入为负数
     income_conditions = (df['income_and_expenses'] == '收入')
     df.loc[income_conditions, 'amount'] = abs(df.loc[income_conditions, 'amount']) * -1

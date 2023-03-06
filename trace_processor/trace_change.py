@@ -15,6 +15,8 @@ def match_condition(df, rule_list):
 
 
 def trace_change(df):
+    if df.empty:
+        return df
     conf = TraceChangeConf.trace_change
     for rules, values in conf.items():
         rule_list = [s.strip() for s in rules.split('&')]

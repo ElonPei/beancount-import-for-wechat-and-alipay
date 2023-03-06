@@ -18,5 +18,7 @@ def sign_allocation_of_funds(df):
 
 
 def transfer(df):
+    if df.empty:
+        return df
     df = sign_allocation_of_funds(df)
     return df

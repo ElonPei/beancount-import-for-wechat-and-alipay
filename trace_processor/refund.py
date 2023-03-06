@@ -53,6 +53,9 @@ def alipay_refund(df):
 
 
 def refund(df):
+    if df.empty:
+        return df
+
     df = wechat_refund(df)
     df = alipay_refund(df)
     return df

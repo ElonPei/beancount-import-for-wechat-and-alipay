@@ -45,6 +45,9 @@ def holder_processor():
     t7 = time.time()
     print('account_match', len(df), t7 - t6)
 
+    if df.empty:
+        return df
+
     df.fillna("", inplace=True)
     df = df.sort_values(by='date')
     return df
