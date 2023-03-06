@@ -49,7 +49,7 @@ def load_wechat_trace():
     df = pd.DataFrame()
     all_files = []
     for root, _, files in os.walk(trade_path):
-        all_files.append([root + '/' + f for f in files if 'csv' in f])
+        all_files = all_files + [root + '/' + f for f in files if 'csv' in f]
 
     for f in all_files:
         if '微信支付' not in f:
