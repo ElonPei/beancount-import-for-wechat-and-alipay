@@ -20,7 +20,7 @@ def wechat_refund(df):
     微信支付退款数据的处理
     """
     # 筛选出所有微信支付的退款数据
-    conditions = (df['source'] == 'wechat') & \
+    conditions = (df['source'].str.contains('微信')) & \
                  ((df['status'].str.contains('已退款')) | (df['status'] == '已全额退款'))
     refund_df = df.loc[conditions]
     # 对退款数据中收支类型为收入的数据做删除处理
@@ -45,7 +45,7 @@ def alipay_refund(df):
     微信支付退款数据的处理
     """
     # 筛选出来所有退款流水, 把退款的数据直接替换为负支出即可
-    conditions = (df['source'] == 'alipay') & \
+    conditions = (df['source'].str.contains('alipay')) & \
                  (df['status'] == '退款成功')
     df.loc[conditions, 'income_and_expenses'] = '支出'
     df.loc[conditions, 'amount'] = df.loc[conditions, 'amount'] * -1
