@@ -21,7 +21,11 @@ def wechat_refund(df):
     """
     # 筛选出所有微信支付的退款数据
     conditions = (df['source'].str.contains('微信')) & \
-                 ((df['status'].str.contains('已退款')) | (df['status'] == '已全额退款'))
+                 (
+                         (df['status'].str.contains('已退款')) |
+                         (df['status'] == '已全额退款') |
+                         (df['status'] == '对方已退还')
+                 )
     refund_df = df.loc[conditions]
     # 对退款数据中收支类型为收入的数据做删除处理
     df_delete_conditions = conditions & (df['income_and_expenses'] == '收入')
@@ -30,10 +34,10 @@ def wechat_refund(df):
     refund_df = refund_df.loc[refund_df['income_and_expenses'] == '支出']
     for index, row in refund_df.iterrows():
         new_row = row.copy()
-        if new_row['status'] == '已全额退款':
-            new_row['amount'] = new_row['amount'] * -1
-        elif new_row['status'].startswith('已退款'):
+        if new_row['status'].startswith('已退款'):
             new_row['amount'] = get_amount_by_str(new_row['status']) * -1
+        else:
+            new_row['amount'] = new_row['amount'] * -1
         # 拼接日期和金额并计算md5值
         new_row['id'] = hashlib.md5((str(new_row['date']) + str(new_row['amount'])).encode()).hexdigest()
         df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
