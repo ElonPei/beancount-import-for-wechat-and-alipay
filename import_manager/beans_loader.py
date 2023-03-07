@@ -56,6 +56,8 @@ def load_custom_info():
         remark_list = ['' for _ in range(len(id_list))]
     if len(relation_list) != len(id_list):
         relation_list = ['' for _ in range(len(id_list))]
+    if len(tags_list) != len(id_list):
+        tags_list = ['' for _ in range(len(id_list))]
 
     df = pd.DataFrame({
         "id": id_list,
