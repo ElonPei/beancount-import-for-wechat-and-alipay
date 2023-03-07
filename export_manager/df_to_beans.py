@@ -10,7 +10,7 @@ def df_to_beans(df):
     for index, row in df.iterrows():
         id = row['id']
         remark = row['remark']
-        ignore = row['ignore']
+        relation = row['relation']
         tags = row['tags']
         date = row['date']
         trace_type = row['trace_type']
@@ -48,7 +48,7 @@ def df_to_beans(df):
 
         bean = Bean(id=id,
                     remark=remark,
-                    ignore=ignore,
+                    relation=relation,
                     tags=tags,
                     date=datetime_format(date),
                     datetime=date,

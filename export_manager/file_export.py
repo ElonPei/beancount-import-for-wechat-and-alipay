@@ -36,7 +36,7 @@ def beans_to_file(file, beans):
         # 注释
         content = content + '\tid: "' + str(bean.id) + '"\n'
         content = content + '\tremark: "' + str(bean.remark) + '"\n'
-        content = content + '\tignore: "' + str(bean.ignore) + '"\n'
+        content = content + '\trelation: "' + str(bean.relation) + '"\n'
         content = content + '\tdatetime: "' + str(bean.datetime) + '"\n'
         content = content + '\ttrace_obj: "' + str(bean.trace_obj) + '"\n'
         content = content + '\tdesc: "' + str(bean.desc) + '"\n'

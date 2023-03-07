@@ -6,7 +6,7 @@ def account_match(df):
         return df
     income_conditions = df['income_and_expenses'] == '收入'
     expenses_conditions = df['income_and_expenses'] == '支出'
-    excluding_income_and_expenditure = (df['is_allocation_funds'] == '1') | (df['ignore'] == '1')
+    excluding_income_and_expenditure = df['is_allocation_funds'] == '1'
 
     income = AccountConf.income
     expenses = AccountConf.expenses
