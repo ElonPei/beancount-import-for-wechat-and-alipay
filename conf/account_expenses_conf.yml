@@ -1,5 +1,5 @@
 # 默认
-"Expenses:Unknown":
+"Expenses:BaseLife:Unknown":
   - "未知"
 
 # 基本生活保障 - 食品
@@ -41,6 +41,7 @@
   - "西部马华"
   - "臭豆腐"
   - "炸鸡"
+  - "虾"
   - "烤冷面"
   - "鸭肠"
   - "面馆"
@@ -194,6 +195,7 @@
 "Expenses:BaseLife:House:Utilities": ## 水电燃气
   - "水费"
   - "电费"
+  - "燃气"
   - "物业费"
 "Expenses:BaseLife:House:Broadband": ## 宽带费用
   - "宽带费用"
@@ -242,7 +244,6 @@
   - "美发店"
   - "美容美发"
   - "曹文"
-  - "微风家专注性价比"
 
 # 升级消费 - 快递通讯
 "Expenses:UpgradeConsumption:Express": ## 快递
@@ -284,6 +285,7 @@
   - "化妆品"
   - "屈臣氏"
   - "中免日上"
+  - "面膜"
 # 升级消费 - 电子产品
 "Expenses:UpgradeConsumption:ElectricalProducts": ## 电子产品
   - "电脑"
@@ -327,6 +329,9 @@
 # 升级消费 - 投资型消费
 "Expenses:UpgradeConsumption:Investing": ## 投资
   - "投资"
+"Expenses:UpgradeConsumption:Investing:Work": ## 投资-工作提升
+  - "pycharm"
+  - "jetbrains"
 
 # 人情往来
 "Expenses:Favors:Relative": ## 亲戚

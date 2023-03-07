@@ -4,7 +4,7 @@ import pandas as pd
 """
 
 allocation_of_funds_conf = {
-    'trace_obj': "裴二龙|哈哈୧(๑•̀⌄•́๑)૭|发给Aimee|卢娇艳(卢娇艳)",
+    'trace_obj': "裴二龙|哈哈୧(๑•̀⌄•́๑)૭|发给Aimee|卢娇艳(卢娇艳)|Aimee",
 }
 
 
