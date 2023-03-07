@@ -3,7 +3,7 @@
 """
 
 allocation_of_funds_conf = {
-    'trace_obj': "裴二龙|哈哈୧(๑•̀⌄•́๑)૭|发给Aimee",
+    'trace_obj': "裴二龙|哈哈୧(๑•̀⌄•́๑)૭|发给Aimee|卢娇艳(卢娇艳)",
 }
 
 
@@ -13,7 +13,10 @@ def sign_allocation_of_funds(df):
     """
     for k, v in allocation_of_funds_conf.items():
         for item in v.split('|'):
-            df.loc[(df[k] == item) & (df['remark'] == ''), 'is_allocation_funds'] = '1'
+            df.loc[
+                (df[k] == item) &
+                (df['remark'] == '')
+                , 'is_allocation_funds'] = '1'
     return df
 
 
