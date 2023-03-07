@@ -19,7 +19,7 @@ df_common_columns = ['date', 'trace_type', 'trace_obj', 'goods', 'income_and_exp
 def filter_df(df):
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df.drop_duplicates(
-        subset=['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way', 'status'],
+        subset=['date', 'trace_type', 'trace_obj', 'goods', 'income_and_expenses', 'amount', 'pay_way'],
         keep='first', inplace=True)
 
     # 拼接日期和金额并计算md5值
@@ -121,7 +121,7 @@ def load_all_trace():
     df = filter_df(df)
     df = format_amount(df)
 
-    df = df.sort_values(by='date')
+    df = df.sort_values(by=['date', 'file_update_time'])
     return df
 
 
